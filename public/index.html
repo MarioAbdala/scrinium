@@ -17,7 +17,7 @@
                 <img id="logo" src="assets/img/favicon.png" alt="scrinium_logo">
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="#" v-on:click="burgerToggle" class="nav-link">Services</a>
+                        <a href="#" v-on:click="() => {burgerToggle(); title='Services'}" class="nav-link">Services</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Blog</a>
@@ -56,10 +56,12 @@
                     <h2>Destacados</h2>
                     <ul class="hs full">
                         <li class="item">
-                            <div class="card">
-                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                <p>Monster Hunter Rise</p>
-                            </div>
+                            <a href="#" v-on:click="() => title='Juego'">
+                                <div class="card">
+                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
+                                    <p>Monster Hunter Rise</p>
+                                </div>
+                            </a>
                         </li>
                         <li class="item">
                             <div class="card">
@@ -217,8 +219,11 @@
                     </ul>
                 </div>
             </section>
-            <section v-show="title == 'Game'">
-
+            <section v-show="title == 'Juego'">
+                <a href="#" v-on:click="() => title = 'Home'">Volver</a>
+            </section>
+            <section v-show="title == 'Services'">
+                <a href="#" v-on:click="() => title = 'Home'">Volver</a>
             </section>
         </main>
         <footer>
