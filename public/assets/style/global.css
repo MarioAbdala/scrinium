@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --main-black: #17181F;
+    --main-purple: #6C72CB;
+    --main-pink: #CB69C1;
+    --main-white: #EEEDF0;
+    --main-grey: #6d6e74;
+    --gutter: 2.5px;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-black);
+    color: var(--main-white);
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--main-purple);
+    background: radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%);
+    overflow: hidden;
+    padding: 10px 10px 100px 10px;
+    transition: 0.4s;
+    position: fixed;
+    top: 0;
+    z-index: 5;
+}
+
+#logo{
+    width: 50%;
+    transform: translate(100px, 50px);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+}
+
+.hamburger {
+    display: none;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--main-white);
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 5rem;
+}
+
+.nav-link {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--main-white);
+}
+
+.nav-link:hover {
+    color: #482ff7;
+}
+
+.nav-logo {
+    font-size: 2.1rem;
+    font-weight: 500;
+    color: #482ff7;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 325px;
+    align-items: center;
+}
+
+#search {
+    margin-top: 1rem;
+    width: 95%;
+    height: 2.5rem;
+    border-radius: 45px;
+    border: none;
+    text-indent: 1rem;
+}
+
+#search-icon {
+    color: var(--main-grey);
+    align-self: end;
+    margin-right: 1.5rem;
+    transform: translateY(-32px);
+}
+
+#search::placeholder {
+    color: var(--main-grey);
+}
+
+section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#home {
+    width: 100%;
+
+}
+
+.carousel {
+    padding: var(--gutter) 0;
+    padding-bottom: 0;
+    display: grid;
+    grid-gap: var(--gutter) 0;
+    grid-template-columns: var(--gutter) 1fr var(--gutter);
+    align-content: start;
+}
+
+.carousel>* {
+    grid-column: 2 / -2;
+}
+
+.carousel>.full {
+    grid-column: 1 / -1;
+}
+
+.carousel>h2{
+    text-indent: 2.25rem;
+}
+
+.hs {
+    display: grid;
+    gap: calc(var(--gutter) * 5);
+    grid-template-columns: 10px repeat(var(--total), calc(50% - var(--gutter) * 2)) 10px;
+    grid-template-rows: minmax(150px, 1fr);
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    padding-bottom: calc(.75 * var(--gutter));
+    margin-bottom: calc(-.25 * var(--gutter));
+}
+
+.hs::-webkit-scrollbar {
+    display: none;
+}
+
+.hs:before,
+.hs:after {
+    content: '';
+}
+
+.card{
+    width: 100%;
+    border-radius: 15px;
+}
+
+.card img{
+    width: 100%;
+    border-radius: 15px;
+    border: 1.5px solid black;
+    object-fit: cover;
+}
+
+.card p{
+    width: 100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 45%, rgba(32,32,32,0.9136029411764706) 60%, rgba(61,61,61,0.8099614845938375) 70%, rgba(97,97,97,0.4458158263305322) 80%, rgba(160,160,160,0.1516981792717087) 90%, rgba(255,255,255,0) 100%);
+    border-radius: 0 0 15px 15px;
+    text-align: center;
+    font-size: 18px;
+    transform: translateY(-21px);
+}
+
+@media only screen and (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        right: -100%;
+        top: 4.9rem;
+        flex-direction: column;
+        /* Color del pop-up de la burger */
+        background: rgb(203,105,193);
+        background: linear-gradient(90deg, rgba(203,105,193,1) 5%, rgba(116,113,202,1) 35%, rgba(108,114,203,1) 65%, rgba(203,105,193,1) 95%);
+        /* Color del pop-up de la burger */
+        width: 100%;
+        height: 85%;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-menu.active {
+        right: 0%;
+    }
+
+    .nav-item {
+        margin: 2.5rem 0;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        align-self: flex-start;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
