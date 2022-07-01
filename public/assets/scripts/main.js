@@ -8,7 +8,8 @@ Vue.createApp({
             usuarioNombre: "",
             juegos: [],
             categorias: [],
-            comments: []
+            comments: [],
+            busqueda: "",
         }
     },
     created() {
