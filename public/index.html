@@ -39,6 +39,7 @@
         <main>
             <input type="text" name="search" id="search" placeholder="Search games" v-model="busqueda">
             <span id="search-icon" class="material-icons">search</span>
+
             <section v-show="title == 'Home'" id="home">
                 <!-- {{loadAllGames}} -->
                 <!-- <div class="carousel" v-for="categoria in categorias" v-show="busqueda == ''">
@@ -219,12 +220,184 @@
                     </ul>
                 </div>
             </section>
-            <section v-show="title == 'Juego'">
+
+            <section v-show="title == 'Juego'" id="gameDetail">
                 <a href="#" v-on:click="() => title = 'Home'">Volver</a>
+                <div class="tiendasDondeEsta">
+                    <span>
+                        <a href="">
+                            <div>
+                                1
+                            </div>
+                        </a>
+                        <a href="">
+                            <div>
+                                2
+                            </div>
+                        </a>
+                        <a href="">
+                            <div>
+                                3
+                            </div>
+                        </a>
+                        <a href="">
+                            <div>
+                                4
+                            </div>
+                        </a>
+                    </span>
+                    <span id="secDivision">
+                        <a href="">
+                            <div>
+                                5
+                            </div>
+                        </a>
+                        <a href="">
+                            <div>
+                                6
+                            </div>
+                        </a>
+                        <a href="">
+                            <div>
+                                7
+                            </div>
+                        </a>
+                    </span>
+                </div>
+
+                <div>
+                    <h2>Título del juego</h2>
+                    <p>
+                        texto justificado a la izquierda con trama general del juego, mas o menos larga/decente y que en lo
+                        posible ocupe todo este espacio con una letra entendible
+                    </p>
+                </div>
+                
+                <div class="carousel" id="generos">
+                    <ul class="hs full">
+                        <li class="item detailItem">
+                            <div class="card">
+                                <p>Genero 1</p>
+                            </div>
+                        </li>
+                        <li class="item detailItem">
+                            <div class="card">
+                                <p>Genero 2</p>
+                            </div>
+                        </li>
+                        <li class="item detailItem">
+                            <div class="card">
+                                <p>Genero 3</p>
+                            </div>
+                        </li>
+                        <li class="item detailItem">
+                            <div class="card">
+                                <p>Genero 4</p>
+                            </div>
+                        </li>
+                        <li class="item detailItem">
+                            <div class="card">
+                                <p>Genero 5</p>
+                            </div>
+                        </li>
+                        <li class="item detailItem">
+                            <div class="card">
+                                <p>Genero 6</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <span>
+                    <p>Reseñas promedio</p>
+                </span>
+
+                <div>
+                    <h2>Descripción del juego</h2>
+
+                    <p>
+                        descripcion mas tecnica y de jugabilidad, mecanicas, tipo de graficos etc
+                        Desarrolladores:
+                        Fecha de Lanzamiento:
+                        Existencia de Mods o DLC
+                    </p>
+                </div>
+                
+
+                <div class="carousel">
+                    <h2>Juegos Relacionados</h2>
+                    <ul class="hs full">
+                        <li class="item">
+                            <a href="#" v-on:click="() => title='Juego'">
+                                <div class="card">
+                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
+                                    <p>Monster Hunter Rise</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <div class="card">
+                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
+                                <p>Monster Hunter Rise</p>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="card">
+                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
+                                <p>Monster Hunter Rise</p>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="card">
+                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
+                                <p>Monster Hunter Rise</p>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="card">
+                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
+                                <p>Monster Hunter Rise</p>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="card">
+                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
+                                <p>Monster Hunter Rise</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h2>Requisitos Técnicos</h2>
+    
+                    <p>
+                        Un conjunto de computadoras de la nasa
+                        procesador de energia nuclear
+                        cpu de tony stark
+                        minimo 10TB de memoria para descargar el primer DLC
+                    </p>
+                </div>
+
+                <div class="contReseñas">
+                    <div class="reseñasYFiltros">
+                        <p>Reseñas</p>
+                        <button>Filtros</button>
+                    </div>
+                    <div class="reseñas">
+
+                    </div>
+                </div>
+
+                <!-- <div style="height: 100vh;">
+
+                </div> -->
             </section>
+
             <section v-show="title == 'Services'">
                 <a href="#" v-on:click="() => title = 'Home'">Volver</a>
             </section>
+
         </main>
         <footer>
 
