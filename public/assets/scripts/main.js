@@ -9,6 +9,7 @@ Vue.createApp({
             juegos: [],
             categorias: [],
             comments: [],
+            juegosFiltrados: [],
             busqueda: "",
         }
     },
@@ -206,6 +207,14 @@ Vue.createApp({
             this.juegos.length > 0 && this.juegos.forEach(juego => juego[1].categorias.forEach(cat => {
                 !this.categorias.includes(cat) && (this.categorias = [...this.categorias, cat]);
             }));
+        },
+        autoSearch: function () {
+            if (this.categorias.includes(this.busqueda.toUpperCase())){
+                this.juegosFiltrados = this.juegos.filter(juego => juego[1].categorias.includes(this.busqueda.toUpperCase()));
+            }
+            else{
+                this.juegosFiltrados = this.juegos.filter(juego => juego[1].nombre.toUpperCase().includes(this.busqueda.toUpperCase()));
+            };
         }
     }
 }).mount('#app');

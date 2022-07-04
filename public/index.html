@@ -42,10 +42,22 @@
 
             <section v-show="title == 'Home'" id="home">
                 <!-- {{loadAllGames}} -->
+                <!-- {{autoSearch}} -->
+                <!-- <div class="carousel" v-show="busqueda != ''">
+                    <h2>Resultados de "{{busqueda}}"</h2>
+                    <ul class="hs full" v-bind:style="returnLength(juegosFiltrados)">
+                        <li class="item" v-for="juego in juegosFiltrados">
+                            <div class="card">
+                                <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
+                                <p>{{juego[1].nombre}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div> -->
                 <!-- <div class="carousel" v-for="categoria in categorias" v-show="busqueda == ''">
                     <h2>{{categoria}}</h2>
                     <ul class="hs full" v-bind:style="returnLength(categoria)">
-                        <li class="item" v-for="juego in this.juegos.filter(juego => juego[1].categorias.includes(categoria))">
+                        <li class="item" v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
                             <div class="card">
                                 <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
                                 <p>{{juego[1].nombre}}</p>
