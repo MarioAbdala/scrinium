@@ -20,8 +20,9 @@
                     <li class="nav-item">
                         <a href="#" v-on:click="() => {burgerToggle(); title='Services'}" class="nav-link">Services</a>
                     </li>
+                    <!-- se puede cambiar, lo agregué acá mientras trabajo para ir y venir: -->
                     <li class="nav-item">
-                        <a href="#" v-on:click="title = 'Login'" class="nav-link">Login</a>
+                        <a href="#" v-on:click="() => {burgerToggle(); title = 'Login'}" class="nav-link">Login</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Blog</a>
@@ -136,7 +137,9 @@
 
             <!-- login -->
             <section v-show="title == 'Login'" id="login">
-
+                <div>
+                    
+                </div>
             </section>
 
             <!-- detalle de cada juego -->
