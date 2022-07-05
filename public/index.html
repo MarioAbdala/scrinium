@@ -38,6 +38,7 @@
             </nav>
         </header>
         <main>
+            <!-- inicio -->
             <section v-show="title == 'Home'" id="home">
                 <input type="text" name="search" id="search" placeholder="Buscar juegos" v-model="busqueda">
                 <span id="search-icon" class="material-icons">search</span>
@@ -129,6 +130,12 @@
                 </div>
             </section>
 
+            <!-- login -->
+            <section v-show="title == 'Login'" id="login">
+                
+            </section>
+
+            <!-- detalle de cada juego -->
             <section v-show="title == 'Juego'" id="gameDetail">
                 <div class="tiendasDondeEsta">
                     <span>
