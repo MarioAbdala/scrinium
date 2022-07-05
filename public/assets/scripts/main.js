@@ -11,6 +11,7 @@ Vue.createApp({
             comments: [],
             juegosFiltrados: [],
             busqueda: "",
+            juegoActivo: [],
         }
     },
     created() {

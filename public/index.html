@@ -38,33 +38,36 @@
             </nav>
         </header>
         <main>
-            <input type="text" name="search" id="search" placeholder="Search games" v-model="busqueda">
-            <span id="search-icon" class="material-icons">search</span>
-
             <section v-show="title == 'Home'" id="home">
+                <input type="text" name="search" id="search" placeholder="Buscar juegos" v-model="busqueda">
+                <span id="search-icon" class="material-icons">search</span>
                 <!-- {{loadAllGames}}
                 {{autoSearch}}
                 <div class="carousel" v-show="busqueda != ''">
                     <h2>Resultados de "{{busqueda}}"</h2>
                         <div class="item" v-for="juego in juegosFiltrados">
-                            <div class="card">
-                                <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
-                                <div v-bind:class="returnClass(juego[1].nombre)">
-                                    <p>{{juego[1].nombre}}</p>
+                            <a class="card-link" href="#" v-on:click="() => {title='Juego'; juegoActivo = juego}">
+                                <div class="card">
+                                    <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
+                                    <div v-bind:class="returnClass(juego[1].nombre)">
+                                        <p>{{juego[1].nombre}}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                 </div>
                 <div class="carousel" v-for="categoria in categorias.sort()" v-show="busqueda == ''">
                     <h2>{{categoria}}</h2>
                     <ul class="hs full" v-bind:style="returnLength(categoria)">
                         <li class="item" v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
-                            <div class="card">
-                                <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
-                                <div v-bind:class="returnClass(juego[1].nombre)">
-                                    <p>{{juego[1].nombre}}</p>
+                            <a class="card-link" href="#" v-on:click="() => {title='Juego'; juegoActivo = juego}">
+                                <div class="card">
+                                    <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
+                                    <div v-bind:class="returnClass(juego[1].nombre)">
+                                        <p>{{juego[1].nombre}}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </li>
                     </ul>
                 </div> -->
@@ -309,11 +312,6 @@
 
                 </div> -->
             </section>
-
-            <section v-show="title == 'Services'">
-
-            </section>
-
         </main>
         <footer>
 
