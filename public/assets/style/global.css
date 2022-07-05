@@ -34,7 +34,7 @@ header {
 
 #logo{
     width: 50%;
-    transform: translate(100px, 50px);
+    transform: translateY(50px);
 }
 
 .navbar {
@@ -42,6 +42,16 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
+}
+
+#home-icon-container{
+    text-decoration: none;
+    color: white;
+    align-self: start;
+}
+
+#home-icon{
+    font-size: 29px;
 }
 
 .hamburger {
@@ -270,14 +280,43 @@ section {
     object-fit: cover;
 }
 
-.card p{
-    width: 100%;
+.card-text{
     background: rgb(0,0,0);
     background: linear-gradient(0deg, rgba(0,0,0,1) 45%, rgba(32,32,32,0.9136029411764706) 60%, rgba(61,61,61,0.8099614845938375) 70%, rgba(97,97,97,0.4458158263305322) 80%, rgba(160,160,160,0.1516981792717087) 90%, rgba(255,255,255,0) 100%);
     border-radius: 0 0 15px 15px;
     text-align: center;
-    font-size: 18px;
+    width: 205px;
     transform: translateY(-21px);
+    overflow: hidden;
+    height: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-text p{
+    height: 1.5rem;
+    width: 100%;
+    font-size: 18px;
+}
+
+.two-lines-text p{
+    text-align: start;
+    width: 50rem;
+    animation-name: move-two-lines;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes move-two-lines {
+    0% {
+        margin-left: -8rem;
+    }
+    100% {
+        margin-left: 0rem;
+    }
 }
 
 @media only screen and (max-width: 768px) {

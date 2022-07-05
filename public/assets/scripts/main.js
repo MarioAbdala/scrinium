@@ -22,15 +22,17 @@ Vue.createApp({
                 document.getElementsByTagName("header")[0].style.padding = "5px 10px 5px 10px";
                 document.getElementsByTagName("main")[0].style.marginTop = "211px";
                 document.getElementById("logo").style.width = "50px";
-                document.getElementById("logo").style.transform = "translateX(150px)";
+                document.getElementById("logo").style.transform = "none";
+                document.getElementById("home-icon-container").style.alignSelf = "center";
                 document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
                 document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
             } else {
                 document.getElementsByTagName("header")[0].style.padding = "10px 10px 100px 10px";
                 document.getElementsByTagName("main")[0].style.marginTop = "325px";
                 document.getElementById("logo").style.width = "50%";
-                document.getElementById("logo").style.transform = "translate(100px, 50px)";
+                document.getElementById("logo").style.transform = "translateY(50px)";
                 document.getElementsByClassName("hamburger")[0].style.alignSelf = "flex-start";
+                document.getElementById("home-icon-container").style.alignSelf = "flex-start";
                 document.getElementsByClassName("nav-menu")[0].style.top = "4.9rem";
             }
         };
@@ -169,7 +171,10 @@ Vue.createApp({
             document.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
         },
         returnLength: function (category) {
-            return `--total: ${this.juegos.filter(juego => juego[1].categorias.includes(category)).length}`
+            return `--total: ${this.juegos.filter(juego => juego[1].categorias.includes(category)).length}`;
+        },
+        returnClass: function (name) {
+            return `card-text ${name.length > 30 && "two-lines-text"}`;
         }
     },
     computed: {
