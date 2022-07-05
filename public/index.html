@@ -21,6 +21,9 @@
                         <a href="#" v-on:click="() => {burgerToggle(); title='Services'}" class="nav-link">Services</a>
                     </li>
                     <li class="nav-item">
+                        <a href="#" v-on:click="title = 'Login'" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#" class="nav-link">Blog</a>
                     </li>
                     <li class="nav-item">
@@ -37,6 +40,7 @@
                 </div>
             </nav>
         </header>
+
         <main>
             <!-- inicio -->
             <section v-show="title == 'Home'" id="home">
@@ -132,7 +136,7 @@
 
             <!-- login -->
             <section v-show="title == 'Login'" id="login">
-                
+
             </section>
 
             <!-- detalle de cada juego -->
@@ -320,9 +324,11 @@
                 </div> -->
             </section>
         </main>
+
         <footer>
 
         </footer>
+
     </div>
     <!-- <script src="/__/firebase/9.8.3/firebase-app-compat.js"></script>
     <script src="/__/firebase/9.8.3/firebase-database-compat.js"></script>
