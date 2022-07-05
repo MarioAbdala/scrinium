@@ -170,7 +170,7 @@ Vue.createApp({
         },
         returnLength: function (category) {
             return `--total: ${this.juegos.filter(juego => juego[1].categorias.includes(category)).length}`
-        },
+        }
     },
     computed: {
         checkLogin: function () {
@@ -209,8 +209,8 @@ Vue.createApp({
             }));
         },
         autoSearch: function () {
-            if (this.categorias.includes(this.busqueda.toUpperCase())){
-                this.juegosFiltrados = this.juegos.filter(juego => juego[1].categorias.includes(this.busqueda.toUpperCase()));
+            if (this.categorias.map(cat => cat.toUpperCase()).includes(this.busqueda.toUpperCase())){
+                this.juegosFiltrados = this.juegos.filter(juego => juego[1].categorias.map(cat => cat.toUpperCase()).includes(this.busqueda.toUpperCase()));
             }
             else{
                 this.juegosFiltrados = this.juegos.filter(juego => juego[1].nombre.toUpperCase().includes(this.busqueda.toUpperCase()));
