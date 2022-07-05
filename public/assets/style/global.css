@@ -152,12 +152,103 @@ section {
     align-items: center;
 }
 
-#login div {
+#contenedorLogin {
     margin: 1.3rem 0rem;
     width: 90%;
     height: 90vh;
     border-radius: 30px;
     background-color: #17181F;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.logoEnLogin {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    /* background-color: rgba(255, 255, 255, 0.568); */
+    background: radial-gradient(50% 50% at 50% 50%, rgba(203, 105, 193, 0.2226) 50.52%, rgba(203, 105, 193, 0.42) 100%), radial-gradient(50% 50% at 50% 50%, #6C72CB 0%, rgba(105, 110, 192, 0.4) 98.44%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoEnLogin img {
+    width: 8rem;
+    height: 8rem;
+}
+
+.emailYPass {
+    width: 78%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 7rem;
+}
+
+.emailYPass input {
+    width: 100%;
+    height: 2.7rem;
+    border-radius: 15px;
+    border-style: none;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.msjeUsuarios {
+    background-image: linear-gradient(to right, #0c24fa, #0039fc, #0049fd, #0057fc, #0063fb, #006ffc, #007afd, #0084fc, #0091fd, #009cfc, #00a7fa, #0db1f6);
+    border-radius: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .3rem;
+    width: 90%;
+}
+
+.contMsjeUsers {
+    background-color: var(--main-black);
+    border-radius: 1.2rem;
+    padding: .5rem;
+}
+
+.btnesLogin {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btonSeccLogin {
+    width: 9rem;
+    padding: .6rem 0rem;
+    font-size: 1.9em;
+    border-radius: 20px;
+    border-style: none;
+    color: white;
+}
+
+#btnLogin {
+    background-color: #6C72CB;
+}
+
+#btnSignin {
+    background-color: #CB69C1;
+}
+
+.btnGoogleSignIn {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(108, 114, 203, 0.72) 28.65%, rgba(203, 105, 193, 0.77) 90.1%);
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnGoogleSignIn p {
+    font-size: 4em;
 }
 /* fin login */
 

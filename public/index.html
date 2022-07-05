@@ -137,8 +137,34 @@
 
             <!-- login -->
             <section v-show="title == 'Login'" id="login">
-                <div>
-                    
+                <div id="contenedorLogin">
+                    <div class="logoEnLogin">
+                        <img src="assets/img/favicon.png" alt="scrinium_logo">
+                    </div>
+
+                    <div class="emailYPass">
+                        <input type="email" placeholder="Email">
+                        <input type="password" placeholder="Password">
+                    </div>
+
+                    <div class="msjeUsuarios">
+                        <div class="contMsjeUsers">
+                            <p>mensaje para los usuarios al estilo, ¿todavia no estas registrado? VAMOS! empieza a compartir tu sabiduria con tus compañeros!</p>
+                        </div>
+                    </div>
+
+                    <div class="btnesLogin">
+                        <button id="btnLogin" class="btonSeccLogin">
+                            Login
+                        </button>
+                        <button id="btnSignin" class="btonSeccLogin">
+                            Signin
+                        </button>
+                    </div>
+
+                    <div class="btnGoogleSignIn">
+                        <p>G</p>
+                    </div>
                 </div>
             </section>
 
