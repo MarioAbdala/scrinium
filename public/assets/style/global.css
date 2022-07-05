@@ -8,6 +8,7 @@
     --main-white: #EEEDF0;
     --main-grey: #6d6e74;
     --gutter: 2.5px;
+    font-family: 'Nunito', sans-serif;
 }
 
 body {
@@ -213,6 +214,7 @@ section {
     background-color: var(--main-black);
     border-radius: 1.2rem;
     padding: .5rem;
+    font-family: 'Nunito', sans-serif;
 }
 
 .btnesLogin {
@@ -252,6 +254,65 @@ section {
     font-size: 4em;
 }
 /* fin login */
+
+/* sección profile */
+#profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#profile h3 {
+    margin-bottom: 1.2rem;
+}
+
+.infoUsuario {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 8rem;
+    margin: 2.5rem 0rem;
+}
+
+.infoUsuario p {
+    background-color: rgba(255, 255, 255, 0.842);
+    padding: .7rem .5rem;
+    width: 100%;
+    text-align: center;
+    font-size: 1.4em;
+    border-radius: 20px;
+    color: black;
+}
+
+.juegosFavs {
+    background-image: linear-gradient(to right, #ff4d00, #ff5700, #ff6000, #ff6800, #ff7000, #ff7f00, #ff8e00, #ff9c00, #ffb400, #ffcd00, #ffe600, #faff00);
+    padding: .3rem 0rem;
+    margin-bottom: 2rem;
+}
+
+.juegosFavs div {
+    background-color: #17181F;
+}
+
+.juegosDeseados {
+    background-image: linear-gradient(to right, #ff0000, #ff0045, #ff007b, #ff00b5, #e800ed);
+    padding: .3rem 0rem;
+    margin-bottom: 2rem;
+}
+
+.juegosDeseados div {
+    background-color: #17181F;
+}
+
+.logros {
+    background-color: rgba(255, 255, 255, 0.336);
+    border-radius: 20px;
+    padding: 1rem;
+    width: 90%;
+}
+/* fin profile */
 
 /* sección cada juego */
 .tiendasDondeEsta {
