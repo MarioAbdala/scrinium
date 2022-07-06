@@ -392,8 +392,52 @@ section {
     border: none;
     background-color: #D9D9D9;
 }
-
 /* fin sección cada juego */
+
+/* sección pedido de juego */
+#gameReq {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gameReq h2 {
+    margin: 1.5rem 0rem;
+    font-size: 2em;
+}
+
+#gameReq input {
+    border-style: none;
+    margin: 2rem 0rem;
+    background-color: rgba(255, 255, 255, 0.432);
+}
+
+#gameReq input::placeholder {
+    color: white;
+}
+
+#gameReq input[type=text] {
+    width: 92.5%;
+    height: 6rem;
+    font-size: 2em;
+    text-align: center;
+    border-radius: 13px;
+}
+
+#gameReq input:nth-child(3) { /* descripción del juego */
+    height: 15rem;
+}
+
+#gameReq input:nth-child(5) { /* btn de realizar pedido */
+    padding: .7rem 1rem;
+    font-size: 1.6em;
+    border-radius: 10px;
+    align-self: flex-end;
+    margin: 1rem 1rem 5rem 0rem;
+    background-color: #CB69C1;
+    color: white;
+}
+/* fin sección pedido de juego */
 
 .carousel {
     padding: var(--gutter) 0;

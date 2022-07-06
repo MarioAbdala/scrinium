@@ -28,6 +28,9 @@
                         <a href="#" v-on:click="() => {burgerToggle(); title = 'Profile'}" class="nav-link">Profile</a>
                     </li>
                     <li class="nav-item">
+                        <a href="#" v-on:click="() => {burgerToggle(); title = 'Game Request'}" class="nav-link">Game Request</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#" class="nav-link">Blog</a>
                     </li>
                     <li class="nav-item">
@@ -545,6 +548,17 @@
                 <!-- <div style="height: 100vh;">
 
                 </div> -->
+            </section>
+
+            <!-- pedido de juego -->
+            <section v-show="title == 'Game Request'" id="gameReq">
+                <h2>Pedido de juego</h2>
+
+                <input type="text" placeholder="Nombre del juego">
+                <input type="text" placeholder="Descripción">
+                <input type="text" placeholder="Plataformas donde se pueda encontrar">
+
+                <input type="submit" value="Realizar pedido">
             </section>
         </main>
 
