@@ -337,6 +337,29 @@ section {
 /* fin profile */
 
 /* sección cada juego */
+#gameDetail {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+#gameDetail h2 {
+    font-size: 1.9em;
+    margin-bottom: 5px;
+}
+
+#gameDetail p {
+    background-color: rgba(240, 248, 255, 0.212);
+    padding: 10px 5px;
+    font-size: 1.5em;
+}
+
+#gameDetail > span {
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.178);
+    border-radius: 15px;
+}
+
 .tiendasDondeEsta {
     display: flex;
     flex-direction: column;
@@ -366,21 +389,18 @@ section {
     align-items: center;
 }
 
-#gameDetail h2 {
-    font-size: 1.9em;
-    margin-bottom: 5px;
+.nombreYTrama h2 {
+    margin-left: 1rem;
 }
 
-#gameDetail p {
-    background-color: rgba(240, 248, 255, 0.212);
-    padding: 10px 5px;
-    font-size: 1.5em;
+.nombreYTrama div {
+    background-image: linear-gradient(to right, #0c24fa, #0039fc, #0049fd, #0057fc, #0063fb, #006ffc, #007afd, #0084fc, #0091fd, #009cfc, #00a7fa, #0db1f6);
+    padding: .4rem 0rem;
 }
 
-#gameDetail > span {
-    padding: 10px 15px;
-    background-color: rgba(255, 255, 255, 0.178);
-    border-radius: 15px;
+.nombreYTrama p {
+    background-color: var(--main-black)!important;
+    padding: .8rem!important;
 }
 
 .detailItem {
@@ -388,7 +408,41 @@ section {
 }
 
 #generos {
-    margin: 2rem 0rem;
+    margin: 1.5rem 0rem;
+    padding-top: .5rem;
+    background-color: rgba(245, 245, 245, 0.274);
+}
+
+.hsGeneros {
+    display: grid;
+    gap: calc(var(--gutter) * 5);
+    grid-template-columns: 10px repeat(var(--total), calc(50% - var(--gutter) * 2)) 10px;
+    grid-template-rows: minmax(150px, 1fr);
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    padding-bottom: calc(.75 * var(--gutter));
+    margin-bottom: calc(-.25 * var(--gutter));
+    height: 3.8rem;
+}
+
+.hsGeneros .card p {
+    border-radius: 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.747)!important;
+    color: black;
+}
+
+#resPromedio {
+    width: 80%;
+    border-radius: 25px!important;
+    margin: 1.4rem 0rem 2.4rem 0rem;
+}
+
+#resPromedio p {
+    background-color: transparent!important;
+    text-align: center;
 }
 
 .reseñasYFiltros {

@@ -441,16 +441,18 @@
                     </span>
                 </div>
 
-                <div>
+                <div class="nombreYTrama">
                     <h2>{{juegoActivo.length>0 && juegoActivo[1].nombre}}</h2>
-                    <p>
-                        texto justificado a la izquierda con trama general del juego, mas o menos larga/decente y que en lo
-                        posible ocupe todo este espacio con una letra entendible
-                    </p>
+                    <div>
+                        <p>
+                            texto justificado a la izquierda con trama general del juego, mas o menos larga/decente y que en lo
+                            posible ocupe todo este espacio con una letra entendible
+                        </p>
+                    </div>
                 </div>
                 
                 <div class="carousel" id="generos">
-                    <ul class="hs full">
+                    <ul class="hs full hsGeneros">
                         <li class="item detailItem">
                             <div class="card">
                                 <p>Genero 1</p>
@@ -484,7 +486,7 @@
                     </ul>
                 </div>
 
-                <span>
+                <span id="resPromedio">
                     <p>Reseñas promedio</p>
                 </span>
 
@@ -576,10 +578,6 @@
 
                     </div>
                 </div>
-
-                <!-- <div style="height: 100vh;">
-
-                </div> -->
             </section>
 
             <!-- pedido de juego -->
