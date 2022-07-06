@@ -18,9 +18,8 @@ Vue.createApp({
 
     },
     mounted() {
-        var root = document.documentElement;
+        window.addEventListener("scroll", this.homeScroll);
         const lists = document.querySelectorAll('.hs');
-
         lists.forEach(el => {
             const listItems = el.querySelectorAll('li.item');
             const n = el.children.length;
@@ -157,6 +156,84 @@ Vue.createApp({
         },
         returnClass: function (name) {
             return `card-text ${name.length > 30 && "two-lines-text"}`;
+        },
+        homeScroll: function(){
+            window.onscroll = function () {
+                if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+                    document.getElementsByTagName("header")[0].style.padding = "5px 10px 5px 10px";
+                    document.getElementsByTagName('header')[0].style.backgroundImage = 'none';
+                    document.getElementsByTagName('header')[0].style.background = 'var(--main-purple)';
+                    document.getElementsByTagName('header')[0].style.background = 'radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)';
+                    document.getElementsByTagName("main")[0].style.marginTop = "211px";
+                    document.getElementById("logo").style.display = "block";
+                    document.getElementById("logo").style.width = "50px";
+                    document.getElementById("logo").style.transform = "none";
+                    document.getElementById("home-icon-container").style.alignSelf = "center";
+                    document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
+                    document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
+                }
+                else {
+                    document.getElementsByTagName("header")[0].style.padding = "10px 10px 100px 10px";
+                    document.getElementsByTagName('header')[0].style.backgroundImage = 'none';
+                    document.getElementsByTagName('header')[0].style.background = 'var(--main-purple)';
+                    document.getElementsByTagName('header')[0].style.background = 'radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)';
+                    document.getElementsByTagName("main")[0].style.marginTop = "325px";
+                    document.getElementById("logo").style.display = "block";
+                    document.getElementById("logo").style.width = "50%";
+                    document.getElementById("logo").style.transform = "translateY(50px)";
+                    document.getElementsByClassName("hamburger")[0].style.alignSelf = "flex-start";
+                    document.getElementById("home-icon-container").style.alignSelf = "flex-start";
+                    document.getElementsByClassName("nav-menu")[0].style.top = "4.9rem";
+                }
+            };
+        },
+        gameScroll: function(){
+            let gameImg = this.juegoActivo[1].imagen;
+            window.onscroll = function () {
+                if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+                    document.getElementsByTagName("header")[0].style.padding = "5px 10px 5px 10px";
+                    document.getElementsByTagName("header")[0].style.backgroundImage = "none";
+                    document.getElementsByTagName("header")[0].style.background = "var(--main-purple)";
+                    document.getElementsByTagName("header")[0].style.background = "radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)";
+                    document.getElementsByTagName("main")[0].style.marginTop = "211px";
+                    document.getElementById("logo").style.display = "block";
+                    document.getElementById("logo").style.transform = "none";
+                    document.getElementById("logo").style.width = "50px";
+                    document.getElementById("home-icon-container").style.alignSelf = "center";
+                    document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
+                    document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
+                }
+                else {
+                    document.getElementsByTagName("header")[0].style.padding = "10px 10px 135px 10px";
+                    document.getElementsByTagName("header")[0].style.backgroundImage = `url(${gameImg})`;
+                    document.getElementsByTagName("main")[0].style.marginTop = "200px";
+                    document.getElementById("logo").style.display = "none";
+                    document.getElementsByClassName("hamburger")[0].style.alignSelf = "flex-start";
+                    document.getElementById("home-icon-container").style.alignSelf = "flex-start";
+                    document.getElementsByClassName("nav-menu")[0].style.top = "4.9rem";
+                }
+            };
+        },
+        restoreHeader: function(){
+            window.removeEventListener("scroll", this.gameScroll);
+            window.addEventListener("scroll", this.homeScroll);
+            document.getElementById("logo").style.display = "block";
+            document.getElementById("logo").style.transform = "none";
+            document.getElementById("logo").style.width = "50%";
+            document.getElementById("logo").style.transform = "translateY(50px)";
+            document.getElementsByTagName("main")[0].style.marginTop = "325px";
+            document.getElementsByTagName('header')[0].style.backgroundImage = 'none';
+            document.getElementsByTagName('header')[0].style.background = 'var(--main-purple)';
+            document.getElementsByTagName('header')[0].style.background = 'radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)';
+            document.getElementsByTagName("header")[0].style.padding = "10px 10px 100px 10px";
+        },
+        removeHeader: function(imagen){
+            window.removeEventListener("scroll", this.homeScroll);
+            window.addEventListener("scroll", this.gameScroll);
+            document.getElementById("logo").style.display = "none";
+            document.getElementsByTagName('header')[0].style.backgroundImage = `url(${imagen})`;
+            document.getElementsByTagName("header")[0].style.padding = "10px 10px 135px 10px";
+            document.getElementsByTagName("main")[0].style.marginTop = "200px";
         }
     },
     computed: {
@@ -202,52 +279,6 @@ Vue.createApp({
             else{
                 this.juegosFiltrados = this.juegos.filter(juego => juego[1].nombre.toUpperCase().includes(this.busqueda.toUpperCase()));
             };
-        },
-        handleHomeHeader: function() {
-            window.onscroll = function () {
-                if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-                    document.getElementsByTagName("header")[0].style.padding = "5px 10px 5px 10px";
-                    document.getElementsByTagName("main")[0].style.marginTop = "211px";
-                    document.getElementById("logo").style.width = "50px";
-                    document.getElementById("logo").style.transform = "none";
-                    document.getElementById("home-icon-container").style.alignSelf = "center";
-                    document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
-                    document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
-                }
-                else {
-                    document.getElementsByTagName("header")[0].style.padding = "10px 10px 100px 10px";
-                    document.getElementsByTagName("main")[0].style.marginTop = "325px";
-                    document.getElementById("logo").style.width = "50%";
-                    document.getElementById("logo").style.transform = "translateY(50px)";
-                    document.getElementsByClassName("hamburger")[0].style.alignSelf = "flex-start";
-                    document.getElementById("home-icon-container").style.alignSelf = "flex-start";
-                    document.getElementsByClassName("nav-menu")[0].style.top = "4.9rem";
-                }
-            };
-        },
-        // handleGameHeader: function() {
-        //     window.onscroll = function () {
-        //         if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        //             document.getElementsByTagName("header")[0].style.padding = "5px 10px 5px 10px";
-        //             document.getElementsByTagName("main")[0].style.marginTop = "211px";
-        //             document.getElementById("logo").style.display = "none";
-        //             document.getElementsByTagName("header")[0].style.backgroundImage = juegoActivo[1].imagen;
-        //             document.getElementById("home-icon-container").style.alignSelf = "center";
-        //             document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
-        //             document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
-        //         }
-        //         else {
-        //             document.getElementsByTagName("header")[0].style.padding = "10px 10px 100px 10px";
-        //             document.getElementsByTagName("main")[0].style.marginTop = "325px";
-        //             document.getElementById("logo").style.width = "50%";
-        //             document.getElementById("logo").style.transform = "translateY(50px)";
-        //             document.getElementsByTagName("header")[0].style.backgroundImage = "none";
-        //             document.getElementById("logo").style.display = "block";
-        //             document.getElementsByClassName("hamburger")[0].style.alignSelf = "flex-start";
-        //             document.getElementById("home-icon-container").style.alignSelf = "flex-start";
-        //             document.getElementsByClassName("nav-menu")[0].style.top = "4.9rem";
-        //         }
-        //     };
-        // }
+        }
     }
 }).mount('#app');
