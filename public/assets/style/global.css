@@ -445,6 +445,28 @@ section {
     text-align: center;
 }
 
+.descripcionJuego {
+    margin-bottom: 2rem;
+}
+
+.descripcionJuego h2 {
+    margin-left: 1rem;
+}
+
+.descripcionJuego div {
+    background-image: linear-gradient(to right, #0c24fa, #0039fc, #0049fd, #0057fc, #0063fb, #006ffc, #007afd, #0084fc, #0091fd, #009cfc, #00a7fa, #0db1f6);
+    padding: .36rem 0rem;
+}
+
+.descripcionJuego p {
+    background-color: var(--main-black)!important;
+    padding: .8rem!important;
+}
+
+.juegosRel {
+    
+}
+
 .reseñasYFiltros {
     display: flex;
     width: 100%;
