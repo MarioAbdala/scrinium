@@ -163,7 +163,7 @@
                         <button id="btnLogin" class="btonSeccLogin">
                             Login
                         </button>
-                        <button id="btnSignin" class="btonSeccLogin">
+                        <button id="btnSignin" class="btonSeccLogin" v-on:click="title = 'Registration'">
                             Sign in
                         </button>
                     </div>
@@ -172,6 +172,38 @@
                         <p>G</p>
                     </div>
                 </div>
+            </section>
+
+            <!-- registro de usuario -->
+            <section v-show="title == 'Registration'" id="registration">
+                <div>
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Contraseña">
+                    <input type="text" placeholder="Nombre de usuario">
+                </div>
+
+                <div>
+                    <select name="" id="">
+                        <option value="genero1">Genero fav 1</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="genero2">Genero fav 2</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="genero3">Genero fav 3</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="genero4">Genero fav 4</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="genero5">Genero fav 5</option>
+                    </select>
+                </div>
+
+                <label for="termsAndCond">Aceptación de términos y condiciones</label>
+                <input type="checkbox" name="termsAndCond" required>
+                <label for="notifJuegosDeseados">¿Desea recibir notificaciones sobre sus juegos deseados?</label>
+                <input type="checkbox" name="notifJuegosDeseados">
             </section>
 
             <!-- perfil del usuario -->

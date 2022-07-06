@@ -255,6 +255,16 @@ section {
 }
 /* fin login */
 
+/* sección registration */
+#registration input[type=checkbox] {
+    border-radius: 50%;
+}
+
+#registration input[type=checkbox]:checked {
+    background-color: var(--main-pink);
+}
+/* fin registration */
+
 /* sección profile */
 #profile {
     display: flex;
