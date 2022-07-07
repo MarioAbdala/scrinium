@@ -532,7 +532,7 @@
                     <div class="carousel juegosRel">
                         <ul class="hs full hsCarJuegosRel" v-bind:style="returnArrayLength(juegoActivo[1].relacionados)">
                             <li class="item" v-for="juego in juegos.filter(juego => juegoActivo[1].relacionados.includes(juego[0]))">
-                                <a href="#" >
+                                <a href="#" v-on:click="juegoActivo = juego">
                                     <div class="card">
                                         <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
                                         <div v-bind:class="returnClass(juego[1].nombre)">
