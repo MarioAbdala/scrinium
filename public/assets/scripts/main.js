@@ -155,7 +155,7 @@ Vue.createApp({
             return `--total: ${this.juegos.filter(juego => juego[1].categorias.includes(category)).length}`;
         },
         returnClass: function (name) {
-            return `card-text ${name.length > 30 && "two-lines-text"}`;
+            return `card-text ${name.length > 22 ? (name.length > 30 ? "two-lines-text" : "two-lines-text two-lines-short-text") : ""}`;
         },
         returnArrayLength: function(arr){
             return `--total: ${arr.length}`;

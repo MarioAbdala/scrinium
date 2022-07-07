@@ -710,12 +710,27 @@ section {
     animation-timing-function: ease-in-out;
 }
 
+.two-lines-short-text p{
+    width: 35rem;
+    animation-name: move-two-short-lines;
+    animation-duration: 4s;
+}
+
 @keyframes move-two-lines {
     0% {
-        margin-left: -8rem;
+        margin-left: -10rem;
     }
     100% {
         margin-left: 0rem;
+    }
+}
+
+@keyframes move-two-short-lines {
+    0% {
+        margin-left: -1.75rem;
+    }
+    100% {
+        margin-left: .25rem;
     }
 }
 
