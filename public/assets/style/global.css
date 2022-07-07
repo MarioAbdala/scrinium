@@ -360,7 +360,7 @@ section {
     border-radius: 15px;
 }
 
-.tiendasDondeEsta {
+/* .tiendasDondeEsta {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -387,6 +387,27 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+} */
+
+.tiendasDondeEsta {
+    margin-top: 1.5rem;
+    width: 85%;
+    height: 11rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.tiendasDondeEsta div {
+    padding: 5px;
+    background-color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .1rem .5rem;
 }
 
 .nombreYTrama h2 {
