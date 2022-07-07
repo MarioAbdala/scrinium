@@ -765,6 +765,15 @@ section {
     }
 }
 
+@media only screen and (max-width: 395px){
+    *{
+        --gutter: 7.5px;
+    }
+    .hs{
+        margin-left: -30px;
+    }
+}
+
 @media only screen and (max-width: 375px){
     *{
         --gutter: 10px;
