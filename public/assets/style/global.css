@@ -441,10 +441,12 @@ section {
 
 .hsGeneros {
     height: 3.8rem;
+    grid-template-columns: 10px repeat(var(--total), calc(65% - var(--gutter) * 2)) 10px !important;
     grid-template-rows: minmax(3.4rem, 1fr)!important;
 }
 
 .hsGeneros .card p {
+
     border-radius: 20px;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.747)!important;
@@ -475,7 +477,7 @@ section {
     padding: .36rem 0rem;
 }
 
-.descripcionJuego p {
+.descripcionJuego ul {
     /* background-color: var(--main-black)!important; */
     background-color: rgb(68, 68, 68)!important;
     padding: .8rem!important;
