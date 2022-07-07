@@ -414,17 +414,8 @@ section {
 }
 
 .hsGeneros {
-    display: grid;
-    gap: calc(var(--gutter) * 5);
-    grid-template-columns: 10px repeat(var(--total), calc(50% - var(--gutter) * 2)) 10px;
-    grid-template-rows: minmax(150px, 1fr);
-    overflow-x: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    scroll-snap-type: x proximity;
-    padding-bottom: calc(.75 * var(--gutter));
-    margin-bottom: calc(-.25 * var(--gutter));
     height: 3.8rem;
+    grid-template-rows: minmax(3.4rem, 1fr)!important;
 }
 
 .hsGeneros .card p {
@@ -463,8 +454,49 @@ section {
     padding: .8rem!important;
 }
 
+.contJuegosRel h2 {
+    margin-left: 1rem;
+}
+
 .juegosRel {
-    
+    background-color: rgba(255, 255, 255, 0.384);
+    overflow-x: hidden;
+    overflow-y: clip;
+    margin-bottom: 3rem;
+}
+
+.hsCarJuegosRel {
+    gap: calc(var(--gutter) * 9)!important;
+    height: 9rem;
+    margin: .4rem -.9rem calc(-3 * var(--gutter)) -1rem!important;
+    overflow-y: clip!important;
+}
+
+.textoTarj p {
+    height: 1.5rem;
+    width: 100%;
+    font-size: 18px!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reqTecnicos {
+    margin-bottom: 2rem;
+}
+
+.reqTecnicos h2 {
+    margin-left: 1rem;
+}
+
+.reqTecnicos div {
+    background-image: linear-gradient(to right, #0c24fa, #0039fc, #0049fd, #0057fc, #0063fb, #006ffc, #007afd, #0084fc, #0091fd, #009cfc, #00a7fa, #0db1f6);
+    padding: .3rem 0rem;
+}
+
+.reqTecnicos p {
+    background-color: var(--main-black)!important;
+    padding: .8rem!important;
 }
 
 .reseñasYFiltros {
@@ -474,21 +506,40 @@ section {
 }
 
 .contReseñas {
-    margin-top: 4rem;
+    margin: 4rem 0rem 2rem 0rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.reseñasYFiltros p {
-    /* corregir para quitar los important, porque están mal */
-    font-size: 2.3em!important;
-    background-color: #17181F!important; 
+.contReseñas span {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    margin-bottom: .7rem;
 }
 
-.reseñasYFiltros button {
-    padding: .2rem 1.8rem;
-    font-size: 2.3em;
+.reseñasFiltros {
+    padding: 10px 15px;
+    font-size: 2em;
     border-radius: 18px;
     border: none;
     background-color: #D9D9D9;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.reseñas {
+    background-image: linear-gradient(to right, #0c24fa, #0039fc, #0049fd, #0057fc, #0063fb, #006ffc, #007afd, #0084fc, #0091fd, #009cfc, #00a7fa, #0db1f6);
+    padding: .3rem 0rem;
+}
+
+.reseñas p {
+    background-color: var(--main-black)!important;
+    padding: .8rem!important;
 }
 /* fin sección cada juego */
 
