@@ -420,7 +420,8 @@ section {
 }
 
 .nombreYTrama p {
-    background-color: var(--main-black)!important;
+    /* background-color: var(--main-black)!important; */
+    background-color: rgb(68, 68, 68)!important;
     padding: .8rem!important;
 }
 
@@ -471,7 +472,8 @@ section {
 }
 
 .descripcionJuego p {
-    background-color: var(--main-black)!important;
+    /* background-color: var(--main-black)!important; */
+    background-color: rgb(68, 68, 68)!important;
     padding: .8rem!important;
 }
 
@@ -516,7 +518,8 @@ section {
 }
 
 .reqTecnicos p {
-    background-color: var(--main-black)!important;
+    /* background-color: var(--main-black)!important; */
+    background-color: rgb(68, 68, 68)!important;
     padding: .8rem!important;
 }
 
@@ -559,7 +562,8 @@ section {
 }
 
 .reseñas p {
-    background-color: var(--main-black)!important;
+    /* background-color: var(--main-black)!important; */
+    background-color: rgb(68, 68, 68)!important;
     padding: .8rem!important;
 }
 /* fin sección cada juego */
