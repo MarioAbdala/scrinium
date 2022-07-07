@@ -400,78 +400,39 @@
             <!-- detalle de cada juego -->
             <section v-if="title == 'Juego'" id="gameDetail">
                 <div class="tiendasDondeEsta">
-                    <!-- <span>
-                        <a href="">
-                            <div>
-                                1
-                            </div>
-                        </a>
-                        <a href="">
-                            <div>
-                                22
-                            </div>
-                        </a>
-                        <a href="">
-                            <div>
-                                3
-                            </div>
-                        </a>
-                        <a href="">
-                            <div>
-                                4
-                            </div>
-                        </a>
-                    </span>
-                    <span id="secDivision">
-                        <a href="">
-                            <div>
-                                5
-                            </div>
-                        </a>
-                        <a href="">
-                            <div>
-                                6
-                            </div>
-                        </a>
-                        <a href="">
-                            <div>
-                                7
-                            </div>
-                        </a>
-                    </span> -->
-                    <a href="">
+                    <a v-bind:href="juegoActivo[1].tiendas.steam" v-if="juegoActivo[1].tiendas.steam != ''" target="blank">
                         <div>
-                            1
+                            <img class="store-logo" src="assets/img/steam_logo.png" alt="steam-logo">
                         </div>
                     </a>
-                    <a href="">
+                    <a v-bind:href="juegoActivo[1].tiendas.epic" v-if="juegoActivo[1].tiendas.epic != ''" target="blank">
                         <div>
-                            2
+                            <img class="store-logo" src="assets/img/epic_games_logo.png" alt="epic-games-logo">
                         </div>
                     </a>
-                    <a href="">
+                    <a v-bind:href="juegoActivo[1].tiendas.microsoft" v-if="juegoActivo[1].tiendas.microsoft != ''" target="blank">
                         <div>
-                            3
+                            <img class="store-logo" src="assets/img/xbox_logo.png" alt="xbox-logo">
                         </div>
                     </a>
-                    <a href="">
+                    <a v-bind:href="juegoActivo[1].tiendas.blizzard" v-if="juegoActivo[1].tiendas.blizzard != ''" target="blank">
                         <div>
-                            4
+                            <img class="store-logo" src="assets/img/blizzard_logo.png" alt="blizzard-logo">
                         </div>
                     </a>
-                    <a href="">
+                    <a v-bind:href="juegoActivo[1].tiendas.ea" v-if="juegoActivo[1].tiendas.ea != ''" target="blank">
                         <div>
-                            5
+                            <img class="store-logo" src="assets/img/ea_logo.png" alt="ea-logo">
                         </div>
                     </a>
-                    <a href="">
+                    <a v-bind:href="juegoActivo[1].tiendas.playstation" v-if="juegoActivo[1].tiendas.playstation != ''" target="blank">
                         <div>
-                            6
+                            <img class="store-logo" src="assets/img/playstation_logo.png" alt="playstation-logo">
                         </div>
                     </a>
-                    <a href="">
+                    <a v-bind:href="juegoActivo[1].tiendas.nintendo" v-if="juegoActivo[1].tiendas.nintendo != ''" target="blank">
                         <div>
-                            7
+                            <img class="store-logo" src="assets/img/nintendo_logo.png" alt="nintendo-logo">
                         </div>
                     </a>
                 </div>

@@ -392,7 +392,7 @@ section {
 .tiendasDondeEsta {
     margin-top: 1.5rem;
     width: 85%;
-    height: 11rem;
+    height: fit-content;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -408,6 +408,10 @@ section {
     justify-content: center;
     align-items: center;
     margin: .1rem .5rem;
+}
+
+.store-logo{
+    width: 100%;
 }
 
 .nombreYTrama h2 {
