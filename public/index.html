@@ -398,7 +398,7 @@
             </section>
 
             <!-- detalle de cada juego -->
-            <section v-show="title == 'Juego'" id="gameDetail">
+            <section v-if="title == 'Juego'" id="gameDetail">
                 <div class="tiendasDondeEsta">
                     <!-- <span>
                         <a href="">
@@ -446,7 +446,7 @@
                     </a>
                     <a href="">
                         <div>
-                            22
+                            2
                         </div>
                     </a>
                     <a href="">
@@ -479,43 +479,15 @@
                 <div class="nombreYTrama">
                     <h2>{{juegoActivo.length>0 && juegoActivo[1].nombre}}</h2>
                     <div>
-                        <p>
-                            texto justificado a la izquierda con trama general del juego, mas o menos larga/decente y que en lo
-                            posible ocupe todo este espacio con una letra entendible
-                        </p>
+                        <p>{{juegoActivo.length>0 && juegoActivo[1].descripcion}}</p>
                     </div>
                 </div>
                 
                 <div class="carousel" id="generos">
-                    <ul class="hs full hsGeneros">
-                        <li class="item detailItem">
+                    <ul class="hs full hsGeneros" v-bind:style="returnArrayLength(juegoActivo[1].categorias)">
+                        <li class="item detailItem" v-for="categoria in juegoActivo[1].categorias.sort()">
                             <div class="card">
-                                <p>Genero 1</p>
-                            </div>
-                        </li>
-                        <li class="item detailItem">
-                            <div class="card">
-                                <p>Genero 2</p>
-                            </div>
-                        </li>
-                        <li class="item detailItem">
-                            <div class="card">
-                                <p>Genero 3</p>
-                            </div>
-                        </li>
-                        <li class="item detailItem">
-                            <div class="card">
-                                <p>Genero 4</p>
-                            </div>
-                        </li>
-                        <li class="item detailItem">
-                            <div class="card">
-                                <p>Genero 5</p>
-                            </div>
-                        </li>
-                        <li class="item detailItem">
-                            <div class="card">
-                                <p>Genero 6</p>
+                                <p>{{categoria}}</p>
                             </div>
                         </li>
                     </ul>
@@ -528,24 +500,20 @@
                 <div class="descripcionJuego">
                     <h2>Descripción del juego</h2>
                     <div>
-                        <p>
-                            descripcion mas tecnica y de jugabilidad, mecanicas, tipo de graficos etc
-                            Desarrolladores:
-                            Fecha de Lanzamiento:
-                            Existencia de Mods o DLC
-                        </p>
+                        <ul>
+                            <li>Plataformas: {{juegoActivo[1].plataformas.toString()}}</li>
+                            <li>Desarrolladores: {{juegoActivo[1].desarrollador}}</li>
+                            <li>Fecha de lanzamiento: {{juegoActivo[1].lanzamiento}}</li>
+                            <li>Mods: {{juegoActivo[1].mods ? "Sí" : "No"}}</li>
+                            <li>DLCs: {{juegoActivo[1].dlc ? "Sí" : "No"}}</li>
+                        </ul>
                     </div>
                 </div>
 
                 <div class="reqTecnicos">
                     <h2>Requisitos Técnicos</h2>
                     <div>
-                        <p>
-                            Un conjunto de computadoras de la nasa
-                            procesador de energia nuclear
-                            cpu de tony stark
-                            minimo 10TB de memoria para descargar el primer DLC
-                        </p>
+                        <p>{{juegoActivo[1].requisitos}}</p>
                     </div>
                 </div>
 
@@ -562,56 +530,16 @@
                 <div class="contJuegosRel">
                     <h2>Juegos Relacionados</h2>
                     <div class="carousel juegosRel">
-                        <ul class="hs full hsCarJuegosRel">
-                            <li class="item">
-                                <a href="#" v-on:click="() => title='Juego'">
+                        <ul class="hs full hsCarJuegosRel" v-bind:style="returnArrayLength(juegoActivo[1].relacionados)">
+                            <li class="item" v-for="juego in juegos.filter(juego => juegoActivo[1].relacionados.includes(juego[0]))">
+                                <a href="#" >
                                     <div class="card">
-                                        <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                        <div class="card-text textoTarj">
-                                            <p>Monster Hunter Rise</p>
+                                        <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
+                                        <div v-bind:class="returnClass(juego[1].nombre)">
+                                            <p>{{juego[1].nombre}}</p>
                                         </div>
                                     </div>
                                 </a>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    <div class="card-text textoTarj">
-                                        <p>Monster Hunter Rise</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    <div class="card-text textoTarj">
-                                        <p>Monster Hunter Rise</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    <div class="card-text textoTarj">
-                                        <p>Monster Hunter Rise</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    <div class="card-text textoTarj">
-                                        <p>Monster Hunter Rise</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    <div class="card-text textoTarj">
-                                        <p>Monster Hunter Rise</p>
-                                    </div>
-                                </div>
                             </li>
                         </ul>
                     </div>

@@ -157,6 +157,9 @@ Vue.createApp({
         returnClass: function (name) {
             return `card-text ${name.length > 30 && "two-lines-text"}`;
         },
+        returnArrayLength: function(arr){
+            return `--total: ${arr.length}`;
+        },
         homeScroll: function(){
             window.onscroll = function () {
                 if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
