@@ -892,3 +892,29 @@ section {
         margin-left: -50px;
     }
 }
+
+@media only screen and (min-width: 769px) {
+    #app {
+        display: block;
+    }
+    #logo {
+        max-width: 10vh;
+        max-height: 10vh;
+        transform: none!important;
+    }
+    .navbar {
+        max-height: 10vh;
+    }
+    header {
+        width: 100%;
+        height: 10vh!important;
+        background: var(--main-purple);
+        background: radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%);
+        padding: 10px 10px 100px 10px;
+        z-index: 5;
+    }
+    main {
+        margin-top: 0px!important;
+        display: block!important;
+    }
+}
