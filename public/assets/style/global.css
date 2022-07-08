@@ -289,7 +289,7 @@ section {
     justify-content: space-between;
     width: 90%;
     height: 15rem;
-    margin: 4rem 0rem 3rem 0rem;
+    margin: 5rem 0rem 3rem 0rem;
 }
 
 .inputsRegistro input {
@@ -323,7 +323,7 @@ section {
     width: 85%;
     display: flex;
     justify-content: space-between;
-    margin-top: 6rem;
+    margin: 3rem 0rem;
 }
 
 .btnesRegistro button {
@@ -345,13 +345,22 @@ section {
 }
 
 .checkboxesRegistro {
-    width: 70%;
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
 }
 
 .checkboxesRegistro span {
+    width: 90%;
     display: flex;
     flex-direction: row-reverse;
+    justify-content: flex-end;
 }
+
+/* .checkboxesRegistro span input {
+    margin-right: 1rem;
+} */
 /* fin registration */
 
 /* sección profile */
