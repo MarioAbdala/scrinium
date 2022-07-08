@@ -176,13 +176,13 @@
 
             <!-- registro de usuario -->
             <section v-show="title == 'Registration'" id="registration">
-                <div>
+                <div class="inputsRegistro">
                     <input type="email" placeholder="Email">
                     <input type="password" placeholder="Contraseña">
                     <input type="text" placeholder="Nombre de usuario">
                 </div>
 
-                <div>
+                <div class="generosRegistro">
                     <select name="" id="">
                         <option value="genero1">Genero fav 1</option>
                     </select>
@@ -200,10 +200,26 @@
                     </select>
                 </div>
 
-                <label for="termsAndCond">Aceptación de términos y condiciones</label>
-                <input type="checkbox" name="termsAndCond" required>
-                <label for="notifJuegosDeseados">¿Desea recibir notificaciones sobre sus juegos deseados?</label>
-                <input type="checkbox" name="notifJuegosDeseados">
+                <div class="checkboxesRegistro">
+                    <span>
+                        <label for="termsAndCond">Aceptación de términos y condiciones</label>
+                        <input type="checkbox" name="termsAndCond" required>
+                    </span>
+                    <span>
+                        <label for="notifJuegosDeseados">¿Desea recibir notificaciones sobre sus juegos deseados?</label>
+                        <input type="checkbox" name="notifJuegosDeseados">
+                    </span>
+                </div>
+                
+
+                <div class="btnesRegistro">
+                    <button>
+                        Cancelar
+                    </button>
+                    <button>
+                        Enviar
+                    </button>
+                </div>
             </section>
 
             <!-- perfil del usuario -->
