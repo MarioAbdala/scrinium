@@ -317,6 +317,8 @@ section {
 
 .generosRegistro select {
     margin: .6rem .5rem;
+    -webkit-appearance: none!important;
+    -moz-appearance: none!important;
 }
 
 .btnesRegistro {
@@ -358,9 +360,11 @@ section {
     justify-content: flex-end;
 }
 
-.checkboxesRegistro span input::before {
+#primerInput {
     border-radius: 50%;
 }
+
+
 /* fin registration */
 
 /* sección profile */
