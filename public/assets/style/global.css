@@ -358,9 +358,9 @@ section {
     justify-content: flex-end;
 }
 
-/* .checkboxesRegistro span input {
-    margin-right: 1rem;
-} */
+.checkboxesRegistro span input::before {
+    border-radius: 50%;
+}
 /* fin registration */
 
 /* sección profile */
