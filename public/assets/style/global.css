@@ -288,17 +288,22 @@ section {
     align-items: center;
     justify-content: space-between;
     width: 90%;
-    height: 10rem;
+    height: 15rem;
     margin: 4rem 0rem 3rem 0rem;
 }
 
 .inputsRegistro input {
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
     width: 100%;
     height: 5rem;
     font-size: 1.4em;
     background-color: rgba(255, 255, 255, 0.377);
+    color: white;
+    margin: .5rem 0rem;
+}
+
+.inputsRegistro input::placeholder {
     color: white;
 }
 
@@ -307,6 +312,11 @@ section {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.generosRegistro select {
+    margin: .6rem .5rem;
 }
 
 .btnesRegistro {
