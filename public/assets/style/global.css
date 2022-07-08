@@ -33,7 +33,7 @@ header {
     z-index: 5;
 }
 
-#logo{
+#logo {
     width: 50%;
     transform: translateY(50px);
 }
@@ -45,13 +45,13 @@ header {
     padding: 1rem 1.5rem;
 }
 
-#home-icon-container{
+#home-icon-container {
     text-decoration: none;
     color: white;
     align-self: start;
 }
 
-#home-icon{
+#home-icon {
     font-size: 29px;
 }
 
@@ -145,22 +145,24 @@ section {
     align-items: flex-start;
 }
 
-#results-container{
+#results-container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#results-container>h2{
+#results-container>h2 {
     align-self: flex-start;
     margin-left: .5rem;
 }
 
+
 /* sección login */
+
 #login {
     width: 100%;
-    background-color: rgba(118,78,138,255);
+    background-color: rgba(118, 78, 138, 255);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -265,9 +267,13 @@ section {
 .btnGoogleSignIn p {
     font-size: 4em;
 }
+
+
 /* fin login */
 
+
 /* sección registration */
+
 #registration {
     display: flex;
     flex-direction: column;
@@ -346,7 +352,7 @@ section {
 
 .checkboxesRegistro {
     width: 100%;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
@@ -361,9 +367,13 @@ section {
 .checkboxesRegistro span input::before {
     border-radius: 50%;
 }
+
+
 /* fin registration */
 
+
 /* sección profile */
+
 #profile {
     display: flex;
     flex-direction: column;
@@ -420,11 +430,15 @@ section {
     padding: 1rem;
     width: 90%;
 }
+
+
 /* fin profile */
 
+
 /* sección cada juego */
+
 #gameDetail {
-    display: flex; 
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
@@ -440,11 +454,12 @@ section {
     font-size: 1.5em;
 }
 
-#gameDetail > span {
+#gameDetail>span {
     padding: 10px 15px;
     background-color: rgba(255, 255, 255, 0.178);
     border-radius: 15px;
 }
+
 
 /* .tiendasDondeEsta {
     display: flex;
@@ -496,7 +511,7 @@ section {
     margin: .1rem .5rem;
 }
 
-.store-logo{
+.store-logo {
     width: 100%;
 }
 
@@ -532,7 +547,6 @@ section {
 }
 
 .hsGeneros .card p {
-
     border-radius: 20px;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.747)!important;
@@ -658,9 +672,13 @@ section {
     background-color: rgb(68, 68, 68)!important;
     padding: .8rem!important;
 }
+
+
 /* fin sección cada juego */
 
+
 /* sección pedido de juego */
+
 #gameReq {
     display: flex;
     flex-direction: column;
@@ -690,11 +708,13 @@ section {
     border-radius: 13px;
 }
 
-#gameReq input:nth-child(3) { /* descripción del juego */
+#gameReq input:nth-child(3) {
+    /* descripción del juego */
     height: 15rem;
 }
 
-#gameReq input:nth-child(5) { /* btn de realizar pedido */
+#gameReq input:nth-child(5) {
+    /* btn de realizar pedido */
     padding: .7rem 1rem;
     font-size: 1.6em;
     border-radius: 10px;
@@ -703,6 +723,8 @@ section {
     background-color: #CB69C1;
     color: white;
 }
+
+
 /* fin sección pedido de juego */
 
 .carousel {
@@ -722,7 +744,7 @@ section {
     grid-column: 1 / -1;
 }
 
-.carousel>h2{
+.carousel>h2 {
     text-indent: 2.25rem;
 }
 
@@ -748,17 +770,17 @@ section {
     content: '';
 }
 
-.card-link{
+.card-link {
     text-decoration: none;
     color: white;
 }
 
-.card{
+.card {
     width: 100%;
     border-radius: 15px;
 }
 
-.card img{
+.card img {
     width: 13rem;
     height: 7.5rem;
     border-radius: 15px;
@@ -766,9 +788,9 @@ section {
     object-fit: cover;
 }
 
-.card-text{
-    background: rgb(0,0,0);
-    background: linear-gradient(0deg, rgba(0,0,0,1) 45%, rgba(32,32,32,0.9136029411764706) 60%, rgba(61,61,61,0.8099614845938375) 70%, rgba(97,97,97,0.4458158263305322) 80%, rgba(160,160,160,0.1516981792717087) 90%, rgba(255,255,255,0) 100%);
+.card-text {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 45%, rgba(32, 32, 32, 0.9136029411764706) 60%, rgba(61, 61, 61, 0.8099614845938375) 70%, rgba(97, 97, 97, 0.4458158263305322) 80%, rgba(160, 160, 160, 0.1516981792717087) 90%, rgba(255, 255, 255, 0) 100%);
     border-radius: 0 0 15px 15px;
     text-align: center;
     width: 205px;
@@ -780,13 +802,13 @@ section {
     justify-content: center;
 }
 
-.card-text p{
+.card-text p {
     height: 1.5rem;
     width: 100%;
     font-size: 18px;
 }
 
-.two-lines-text p{
+.two-lines-text p {
     text-align: start;
     width: 50rem;
     animation-name: move-two-lines;
@@ -796,7 +818,7 @@ section {
     animation-timing-function: ease-in-out;
 }
 
-.two-lines-short-text p{
+.two-lines-short-text p {
     width: 35rem;
     animation-name: move-two-short-lines;
     animation-duration: 4s;
@@ -827,68 +849,61 @@ section {
         top: 4.9rem;
         flex-direction: column;
         /* Color del pop-up de la burger */
-        background: rgb(203,105,193);
-        background: linear-gradient(90deg, rgba(203,105,193,1) 5%, rgba(116,113,202,1) 35%, rgba(108,114,203,1) 65%, rgba(203,105,193,1) 95%);
+        background: rgb(203, 105, 193);
+        background: linear-gradient(90deg, rgba(203, 105, 193, 1) 5%, rgba(116, 113, 202, 1) 35%, rgba(108, 114, 203, 1) 65%, rgba(203, 105, 193, 1) 95%);
         /* Color del pop-up de la burger */
         width: 100%;
         height: 85%;
         border-radius: 0 0 10px 10px;
         text-align: center;
         transition: 0.3s;
-        box-shadow:
-            0 10px 27px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
     }
-
     .nav-menu.active {
         right: 0%;
     }
-
     .nav-item {
         margin: 2.5rem 0;
     }
-
     .hamburger {
         display: block;
         cursor: pointer;
         align-self: flex-start;
     }
-
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
     }
-
     .hamburger.active .bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
-
     .hamburger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
 }
 
-@media only screen and (max-width: 395px){
-    *{
+@media only screen and (max-width: 395px) {
+    * {
         --gutter: 7.5px;
     }
-    .hs{
+    .hs {
         margin-left: -30px;
     }
 }
 
-@media only screen and (max-width: 375px){
-    *{
+@media only screen and (max-width: 375px) {
+    * {
         --gutter: 10px;
     }
-    .hs{
+    .hs {
         margin-left: -30px;
     }
 }
 
-@media only screen and (max-width: 320px){
-    *{
+@media only screen and (max-width: 320px) {
+    * {
         --gutter: 12.5px;
     }
-    .hs{
+    .hs {
         margin-left: -50px;
     }
 }
@@ -916,5 +931,6 @@ section {
     main {
         margin-top: 0px!important;
         display: block!important;
+        background: red!important;
     }
 }
