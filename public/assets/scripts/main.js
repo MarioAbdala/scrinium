@@ -157,86 +157,96 @@ Vue.createApp({
         returnClass: function (name) {
             return `card-text ${name.length > 22 ? (name.length > 30 ? "two-lines-text" : "two-lines-text two-lines-short-text") : ""}`;
         },
-        returnArrayLength: function(arr){
+        returnArrayLength: function (arr) {
             return `--total: ${arr.length}`;
         },
-        homeScroll: function(){
-            window.onscroll = function () {
-                if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-                    document.getElementsByTagName("header")[0].style.padding = "5px 10px 5px 10px";
-                    document.getElementsByTagName('header')[0].style.backgroundImage = 'none';
-                    document.getElementsByTagName('header')[0].style.background = 'var(--main-purple)';
-                    document.getElementsByTagName('header')[0].style.background = 'radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)';
-                    document.getElementsByTagName("main")[0].style.marginTop = "211px";
-                    document.getElementById("logo").style.display = "block";
-                    document.getElementById("logo").style.width = "50px";
-                    document.getElementById("logo").style.transform = "none";
-                    document.getElementById("home-icon-container").style.alignSelf = "center";
-                    document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
-                    document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
-                }
-                else {
-                    document.getElementsByTagName("header")[0].style.padding = "10px 10px 100px 10px";
-                    document.getElementsByTagName('header')[0].style.backgroundImage = 'none';
-                    document.getElementsByTagName('header')[0].style.background = 'var(--main-purple)';
-                    document.getElementsByTagName('header')[0].style.background = 'radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)';
-                    document.getElementsByTagName("main")[0].style.marginTop = "325px";
-                    document.getElementById("logo").style.display = "block";
-                    document.getElementById("logo").style.width = "50%";
-                    document.getElementById("logo").style.transform = "translateY(50px)";
-                    document.getElementsByClassName("hamburger")[0].style.alignSelf = "flex-start";
-                    document.getElementById("home-icon-container").style.alignSelf = "flex-start";
-                    document.getElementsByClassName("nav-menu")[0].style.top = "4.9rem";
-                }
-            };
+        homeScroll: function () {
+            if (window.innerWidth < 768) {
+                window.onscroll = function () {
+                    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+                        document.getElementsByTagName("header")[0].style.padding = "5px 10px 5px 10px";
+                        document.getElementsByTagName('header')[0].style.backgroundImage = 'none';
+                        document.getElementsByTagName('header')[0].style.background = 'var(--main-purple)';
+                        document.getElementsByTagName('header')[0].style.background = 'radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)';
+                        document.getElementsByTagName("main")[0].style.marginTop = "211px";
+                        document.getElementById("logo").style.display = "block";
+                        document.getElementById("logo").style.width = "50px";
+                        document.getElementById("logo").style.transform = "none";
+                        document.getElementById("home-icon-container").style.alignSelf = "center";
+                        document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
+                        document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
+                    }
+                    else {
+                        document.getElementsByTagName("header")[0].style.padding = "10px 10px 100px 10px";
+                        document.getElementsByTagName('header')[0].style.backgroundImage = 'none';
+                        document.getElementsByTagName('header')[0].style.background = 'var(--main-purple)';
+                        document.getElementsByTagName('header')[0].style.background = 'radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)';
+                        document.getElementsByTagName("main")[0].style.marginTop = "325px";
+                        document.getElementById("logo").style.display = "block";
+                        document.getElementById("logo").style.width = "50%";
+                        document.getElementById("logo").style.transform = "translateY(50px)";
+                        document.getElementsByClassName("hamburger")[0].style.alignSelf = "flex-start";
+                        document.getElementById("home-icon-container").style.alignSelf = "flex-start";
+                        document.getElementsByClassName("nav-menu")[0].style.top = "4.9rem";
+                    }
+                };
+            }
         },
-        gameScroll: function(){
-            let gameImg = this.juegoActivo[1].imagen;
-            window.onscroll = function () {
-                if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-                    document.getElementsByTagName("header")[0].style.padding = "5px 10px 5px 10px";
-                    document.getElementsByTagName("header")[0].style.backgroundImage = "none";
-                    document.getElementsByTagName("header")[0].style.background = "var(--main-purple)";
-                    document.getElementsByTagName("header")[0].style.background = "radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)";
-                    document.getElementsByTagName("main")[0].style.marginTop = "211px";
-                    document.getElementById("logo").style.display = "block";
-                    document.getElementById("logo").style.transform = "none";
-                    document.getElementById("logo").style.width = "50px";
-                    document.getElementById("home-icon-container").style.alignSelf = "center";
-                    document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
-                    document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
-                }
-                else {
-                    document.getElementsByTagName("header")[0].style.padding = "10px 10px 135px 10px";
-                    document.getElementsByTagName("header")[0].style.backgroundImage = `url(${gameImg})`;
-                    document.getElementsByTagName("main")[0].style.marginTop = "200px";
-                    document.getElementById("logo").style.display = "none";
-                    document.getElementsByClassName("hamburger")[0].style.alignSelf = "flex-start";
-                    document.getElementById("home-icon-container").style.alignSelf = "flex-start";
-                    document.getElementsByClassName("nav-menu")[0].style.top = "4.9rem";
-                }
-            };
+        gameScroll: function () {
+            if (window.innerWidth < 768) {
+                let gameImg = this.juegoActivo[1].imagen;
+                window.onscroll = function () {
+                    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+                        document.getElementsByTagName("header")[0].style.padding = "5px 10px 5px 10px";
+                        document.getElementsByTagName("header")[0].style.backgroundImage = "none";
+                        document.getElementsByTagName("header")[0].style.background = "var(--main-purple)";
+                        document.getElementsByTagName("header")[0].style.background = "radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)";
+                        document.getElementsByTagName("main")[0].style.marginTop = "211px";
+                        document.getElementById("logo").style.display = "block";
+                        document.getElementById("logo").style.transform = "none";
+                        document.getElementById("logo").style.width = "50px";
+                        document.getElementById("home-icon-container").style.alignSelf = "center";
+                        document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
+                        document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
+                    }
+                    else {
+                        document.getElementsByTagName("header")[0].style.padding = "10px 10px 135px 10px";
+                        document.getElementsByTagName("header")[0].style.backgroundImage = `url(${gameImg})`;
+                        document.getElementsByTagName("main")[0].style.marginTop = "200px";
+                        document.getElementById("logo").style.display = "none";
+                        document.getElementsByClassName("hamburger")[0].style.alignSelf = "flex-start";
+                        document.getElementById("home-icon-container").style.alignSelf = "flex-start";
+                        document.getElementsByClassName("nav-menu")[0].style.top = "4.9rem";
+                    }
+                };
+            }
         },
-        restoreHeader: function(){
-            window.removeEventListener("scroll", this.gameScroll);
-            window.addEventListener("scroll", this.homeScroll);
-            document.getElementById("logo").style.display = "block";
-            document.getElementById("logo").style.transform = "none";
-            document.getElementById("logo").style.width = "50%";
-            document.getElementById("logo").style.transform = "translateY(50px)";
-            document.getElementsByTagName("main")[0].style.marginTop = "325px";
-            document.getElementsByTagName('header')[0].style.backgroundImage = 'none';
-            document.getElementsByTagName('header')[0].style.background = 'var(--main-purple)';
-            document.getElementsByTagName('header')[0].style.background = 'radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)';
-            document.getElementsByTagName("header")[0].style.padding = "10px 10px 100px 10px";
+        restoreHeader: function () {
+            if (window.innerWidth < 768) {
+                window.scrollTo(0, 0);
+                document.getElementById("logo").style.display = "block";
+                document.getElementById("logo").style.transform = "none";
+                document.getElementById("logo").style.width = "50%";
+                document.getElementById("logo").style.transform = "translateY(50px)";
+                document.getElementsByTagName("main")[0].style.marginTop = "325px";
+                document.getElementsByTagName('header')[0].style.backgroundImage = 'none';
+                document.getElementsByTagName('header')[0].style.background = 'var(--main-purple)';
+                document.getElementsByTagName('header')[0].style.background = 'radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)';
+                document.getElementsByTagName("header")[0].style.padding = "10px 10px 100px 10px";
+                window.removeEventListener("scroll", this.gameScroll);
+                window.addEventListener("scroll", this.homeScroll);
+            }
         },
-        removeHeader: function(imagen){
-            window.removeEventListener("scroll", this.homeScroll);
-            window.addEventListener("scroll", this.gameScroll);
-            document.getElementById("logo").style.display = "none";
-            document.getElementsByTagName('header')[0].style.backgroundImage = `url(${imagen})`;
-            document.getElementsByTagName("header")[0].style.padding = "10px 10px 135px 10px";
-            document.getElementsByTagName("main")[0].style.marginTop = "200px";
+        removeHeader: function (imagen) {
+            if (window.innerWidth < 768) {
+                window.scrollTo(0, 0);
+                document.getElementById("logo").style.display = "none";
+                document.getElementsByTagName('header')[0].style.backgroundImage = `url(${imagen})`;
+                document.getElementsByTagName("header")[0].style.padding = "10px 10px 135px 10px";
+                document.getElementsByTagName("main")[0].style.marginTop = "200px";
+                window.removeEventListener("scroll", this.homeScroll);
+                window.addEventListener("scroll", this.gameScroll);
+            }
         }
     },
     computed: {
@@ -276,10 +286,10 @@ Vue.createApp({
             }));
         },
         autoSearch: function () {
-            if (this.categorias.map(cat => cat.toUpperCase()).includes(this.busqueda.toUpperCase())){
+            if (this.categorias.map(cat => cat.toUpperCase()).includes(this.busqueda.toUpperCase())) {
                 this.juegosFiltrados = this.juegos.filter(juego => juego[1].categorias.map(cat => cat.toUpperCase()).includes(this.busqueda.toUpperCase()));
             }
-            else{
+            else {
                 this.juegosFiltrados = this.juegos.filter(juego => juego[1].nombre.toUpperCase().includes(this.busqueda.toUpperCase()));
             };
         }
