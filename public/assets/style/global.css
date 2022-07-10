@@ -539,6 +539,25 @@ section {
     background-color: #17181F;
 }
 
+.carruselJuegProf {
+    padding: 10px 0px;
+}
+
+.carruselJuegProf .hs {
+    gap: calc(var(--gutter) * 3);
+    grid-template-columns: 10px repeat(var(--total), calc(53% - var(--gutter) * 2)) 10px;
+    grid-template-rows: minmax(105px, 1fr);
+    padding-bottom: 0;
+}
+
+.carruselJuegProf ul li {
+    height: fit-content;
+}
+
+.carruselJuegProf .card {
+    height: 8.3rem;
+}
+
 .logros {
     background-color: rgba(255, 255, 255, 0.336);
     border-radius: 20px;
@@ -888,6 +907,10 @@ section {
     .logrosSlider {
         margin-left: -15px;
         margin-right: -11px;
+    }
+    .carruselJuegProf .hs {
+        margin-left: -18px;
+    }
 }
 
 @media only screen and (max-width: 375px) {
@@ -933,5 +956,4 @@ section {
         display: block!important;
         background: red!important;
     }
-}
 }
