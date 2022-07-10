@@ -159,7 +159,6 @@ section {
 
 
 /* sección login */
-
 #login {
     width: 100%;
     background-color: rgba(118, 78, 138, 255);
@@ -184,7 +183,6 @@ section {
     width: 15rem;
     height: 15rem;
     border-radius: 50%;
-    /* background-color: rgba(255, 255, 255, 0.568); */
     background: radial-gradient(50% 50% at 50% 50%, rgba(203, 105, 193, 0.2226) 50.52%, rgba(203, 105, 193, 0.42) 100%), radial-gradient(50% 50% at 50% 50%, #6C72CB 0%, rgba(105, 110, 192, 0.4) 98.44%);
     display: flex;
     justify-content: center;
@@ -263,8 +261,6 @@ section {
 }
 
 .btnGoogleSignIn {
-    /* background: radial-gradient(50% 50% at 50% 50%, rgba(108, 114, 203, 0.72) 28.65%, rgba(203, 105, 193, 0.77) 90.1%); */
-    /* background-color:rgb(203, 105, 193); */
     background-color: black;
     width: 100%;
     height: 3rem;
@@ -286,12 +282,10 @@ section {
     height: 2rem;
     margin-right: .5rem;
 }
-
 /* fin login */
 
 
 /* sección registration */
-
 #registration {
     display: flex;
     flex-direction: column;
@@ -351,11 +345,6 @@ section {
     color: white;
 }
 
-/* .generosRegistros:nth-child(1) option {
-    background-color: rgba(255, 255, 255, 0.384);
-    color: white;
-} */
-
 .btnesRegistro {
     width: 85%;
     display: flex;
@@ -395,10 +384,6 @@ section {
     justify-content: space-between;
 }
 
-/* #primerInput {
-    border-radius: 50%;
-} */
-
 .checkboxesRegistro span label {
     text-align: center;
     margin-left: 2rem;
@@ -408,7 +393,6 @@ section {
 
 
 /* sección profile */
-
 #profile {
     display: flex;
     flex-direction: column;
@@ -462,7 +446,6 @@ section {
 .logros {
     background-color: rgba(255, 255, 255, 0.336);
     border-radius: 20px;
-    /* padding: 1rem; */
     width: 90%;
     overflow-y: clip;
     height: 5.8rem;
@@ -485,17 +468,10 @@ section {
     width: 4.9rem!important;
     height: 4.9rem!important;
 }
-
-/* .logrosSlider img {
-    border-radius: 50%!important;
-    width: 7rem!important;
-    height: 7rem!important;
-} */
 /* fin profile */
 
 
 /* sección cada juego */
-
 #gameDetail {
     display: flex;
     flex-direction: column;
@@ -518,36 +494,6 @@ section {
     background-color: rgba(255, 255, 255, 0.178);
     border-radius: 15px;
 }
-
-
-/* .tiendasDondeEsta {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    margin: 40px 0px 40px 0px;
-}
-
-.tiendasDondeEsta span {
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-}
-
-#secDivision {
-    width: 78%;
-}
-
-.tiendasDondeEsta span div {
-    padding: 5px;
-    background-color: white;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 
 .tiendasDondeEsta {
     margin-top: 1.5rem;
@@ -584,7 +530,6 @@ section {
 }
 
 .nombreYTrama p {
-    /* background-color: var(--main-black)!important; */
     background-color: rgb(68, 68, 68)!important;
     padding: .8rem!important;
 }
@@ -637,7 +582,6 @@ section {
 }
 
 .descripcionJuego ul {
-    /* background-color: var(--main-black)!important; */
     background-color: rgb(68, 68, 68)!important;
     padding: .8rem!important;
 }
@@ -683,7 +627,6 @@ section {
 }
 
 .reqTecnicos p {
-    /* background-color: var(--main-black)!important; */
     background-color: rgb(68, 68, 68)!important;
     padding: .8rem!important;
 }
@@ -727,17 +670,13 @@ section {
 }
 
 .reseñas p {
-    /* background-color: var(--main-black)!important; */
     background-color: rgb(68, 68, 68)!important;
     padding: .8rem!important;
 }
-
-
 /* fin sección cada juego */
 
 
 /* sección pedido de juego */
-
 #gameReq {
     display: flex;
     flex-direction: column;
@@ -995,4 +934,5 @@ section {
         display: block!important;
         background: red!important;
     }
+}
 }
