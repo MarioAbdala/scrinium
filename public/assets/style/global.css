@@ -729,10 +729,12 @@ section {
     border-style: none;
     margin: 2rem 0rem;
     background-color: rgba(255, 255, 255, 0.432);
+    color: white;
 }
 
 #gameReq input::placeholder {
-    color: white;
+    color: rgba(255, 255, 255, 0.486);
+    font-size: .8em;
 }
 
 #gameReq input[type=text] {
@@ -758,8 +760,6 @@ section {
     background-color: #CB69C1;
     color: white;
 }
-
-
 /* fin sección pedido de juego */
 
 .carousel {
