@@ -157,6 +157,102 @@ section {
     margin-left: .5rem;
 }
 
+.carousel {
+    padding: var(--gutter) 0;
+    padding-bottom: 0;
+    display: grid;
+    grid-gap: var(--gutter) 0;
+    grid-template-columns: var(--gutter) 1fr var(--gutter);
+    align-content: start;
+}
+
+.carousel>* {
+    grid-column: 2 / -2;
+}
+
+.carousel>.full {
+    grid-column: 1 / -1;
+}
+
+.carousel>h2 {
+    text-indent: 2.25rem;
+}
+
+.hs {
+    display: grid;
+    gap: calc(var(--gutter) * 5);
+    grid-template-columns: 10px repeat(var(--total), calc(50% - var(--gutter) * 2)) 10px;
+    grid-template-rows: minmax(150px, 1fr);
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    padding-bottom: calc(.75 * var(--gutter));
+    margin-bottom: calc(-.25 * var(--gutter));
+}
+
+.hs::-webkit-scrollbar {
+    display: none;
+}
+
+.hs:before,
+.hs:after {
+    content: '';
+}
+
+.card-link {
+    text-decoration: none;
+    color: white;
+}
+
+.card {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.card img {
+    width: 13rem;
+    height: 7.5rem;
+    border-radius: 15px;
+    border: 1.5px solid black;
+    object-fit: cover;
+}
+
+.card-text {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 45%, rgba(32, 32, 32, 0.9136029411764706) 60%, rgba(61, 61, 61, 0.8099614845938375) 70%, rgba(97, 97, 97, 0.4458158263305322) 80%, rgba(160, 160, 160, 0.1516981792717087) 90%, rgba(255, 255, 255, 0) 100%);
+    border-radius: 0 0 15px 15px;
+    text-align: center;
+    width: 205px;
+    transform: translateY(-21px);
+    overflow: hidden;
+    height: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-text p {
+    height: 1.5rem;
+    width: 100%;
+    font-size: 18px;
+}
+
+.two-lines-text p {
+    text-align: start;
+    width: 50rem;
+    animation-name: move-two-lines;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    animation-timing-function: ease-in-out;
+}
+
+.two-lines-short-text p {
+    width: 35rem;
+    animation-name: move-two-short-lines;
+    animation-duration: 4s;
+}
 
 /* sección login */
 #login {
@@ -724,103 +820,6 @@ section {
     color: white;
 }
 /* fin sección pedido de juego */
-
-.carousel {
-    padding: var(--gutter) 0;
-    padding-bottom: 0;
-    display: grid;
-    grid-gap: var(--gutter) 0;
-    grid-template-columns: var(--gutter) 1fr var(--gutter);
-    align-content: start;
-}
-
-.carousel>* {
-    grid-column: 2 / -2;
-}
-
-.carousel>.full {
-    grid-column: 1 / -1;
-}
-
-.carousel>h2 {
-    text-indent: 2.25rem;
-}
-
-.hs {
-    display: grid;
-    gap: calc(var(--gutter) * 5);
-    grid-template-columns: 10px repeat(var(--total), calc(50% - var(--gutter) * 2)) 10px;
-    grid-template-rows: minmax(150px, 1fr);
-    overflow-x: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    scroll-snap-type: x proximity;
-    padding-bottom: calc(.75 * var(--gutter));
-    margin-bottom: calc(-.25 * var(--gutter));
-}
-
-.hs::-webkit-scrollbar {
-    display: none;
-}
-
-.hs:before,
-.hs:after {
-    content: '';
-}
-
-.card-link {
-    text-decoration: none;
-    color: white;
-}
-
-.card {
-    width: 100%;
-    border-radius: 15px;
-}
-
-.card img {
-    width: 13rem;
-    height: 7.5rem;
-    border-radius: 15px;
-    border: 1.5px solid black;
-    object-fit: cover;
-}
-
-.card-text {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 45%, rgba(32, 32, 32, 0.9136029411764706) 60%, rgba(61, 61, 61, 0.8099614845938375) 70%, rgba(97, 97, 97, 0.4458158263305322) 80%, rgba(160, 160, 160, 0.1516981792717087) 90%, rgba(255, 255, 255, 0) 100%);
-    border-radius: 0 0 15px 15px;
-    text-align: center;
-    width: 205px;
-    transform: translateY(-21px);
-    overflow: hidden;
-    height: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.card-text p {
-    height: 1.5rem;
-    width: 100%;
-    font-size: 18px;
-}
-
-.two-lines-text p {
-    text-align: start;
-    width: 50rem;
-    animation-name: move-two-lines;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-direction: reverse;
-    animation-timing-function: ease-in-out;
-}
-
-.two-lines-short-text p {
-    width: 35rem;
-    animation-name: move-two-short-lines;
-    animation-duration: 4s;
-}
 
 @keyframes move-two-lines {
     0% {
