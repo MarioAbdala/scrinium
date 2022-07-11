@@ -864,6 +864,12 @@ section {
 .masPopSemana {
     display: none;
 }
+.patrocinadores {
+    display: none;
+}
+#titCategorias {
+    display: none;
+}
 /* fin home desktop */
 
 @keyframes move-two-lines {
@@ -1050,6 +1056,19 @@ section {
         justify-content: center;
         align-items: center;
         font-size: 1.3em;
+    }
+    #titCategorias {
+        display: flex;
+    }
+    .hs {
+        grid-template-columns: 10px repeat(var(--total), calc(22% - var(--gutter) * 2)) 10px;
+        height: fit-content;
+    }
+    .card {
+        height: 18rem;
+    }
+    .card img {
+        height: 100%;
     }
     /* fin home desktop */
 }
