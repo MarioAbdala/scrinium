@@ -43,7 +43,7 @@
             <!-- inicio -->
             <section v-show="title == 'Home'" id="home">
                 <div class="inicioDesktop">
-                    <!-- colocar navbar flotante acá -->
+                    <!-- colocar navbar flotante acá en desktop-->
                     <img src="./assets/img/favicon.png" alt="logoDesktop">
                     <span>
                         <p>¡Descubre! ¡Prueba! ¡Opina! ¡Comparte! Haz valer tu opinion y sabiduria en Scrinium</p>
@@ -51,6 +51,32 @@
                 </div>
                 <input type="text" name="search" id="search" placeholder="Buscar juegos" v-model="busqueda">
                 <span id="search-icon" class="material-icons">search</span>
+
+                <section class="masPopSemana">
+                    <h2>Los más populares de la semana</h2>
+                    <div id="contMasPopSemana">
+                        <div class="contJuegMasVisitas">
+                            <div class="juegMasVisitas">
+                                <p>Juego con más visitas en la última semana</p>
+                            </div>
+                        </div>
+                        <div class="juegTop">
+                            <div>
+                                <p>Juego Top 2</p>
+                            </div>
+                            <div>
+                                <p>Juego Top 3</p>
+                            </div>
+                            <div>
+                                <p>Juego Top 4</p>
+                            </div>
+                            <div>
+                                <p>Juego Top 5</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- {{autoSearch}}
                 {{loadAllGames}}
                 <div id="results-container" v-show="busqueda != ''">

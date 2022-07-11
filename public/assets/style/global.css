@@ -404,7 +404,6 @@ section {
 }
 /* fin login */
 
-
 /* sección registration */
 #registration {
     display: flex;
@@ -511,7 +510,6 @@ section {
 }
 /* fin registration */
 
-
 /* sección profile */
 #profile {
     display: flex;
@@ -608,7 +606,6 @@ section {
     height: 4.9rem!important;
 }
 /* fin profile */
-
 
 /* sección cada juego */
 #gameDetail {
@@ -814,7 +811,6 @@ section {
 }
 /* fin sección cada juego */
 
-
 /* sección pedido de juego */
 #gameReq {
     display: flex;
@@ -863,6 +859,12 @@ section {
     color: white;
 }
 /* fin sección pedido de juego */
+
+/* home desktop */
+.masPopSemana {
+    display: none;
+}
+/* fin home desktop */
 
 @keyframes move-two-lines {
     0% {
@@ -964,6 +966,11 @@ section {
         max-height: 10vh;
         transform: none!important;
     }
+    #home {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     .inicioDesktop {
         display: flex;
         flex-direction: column;
@@ -986,4 +993,63 @@ section {
         display: block!important;
         background: red!important;
     }
+    /* home desktop */
+    .masPopSemana {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 30rem;
+        background-color: var(--main-black);
+    }
+    #contMasPopSemana {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        height: 80%;
+    }
+    .contJuegMasVisitas {
+        background-image: linear-gradient(to right, #ff4d00, #ff5700, #ff6000, #ff6800, #ff7000, #ff7f00, #ff8e00, #ff9c00, #ffb400, #ffcd00, #ffe600, #faff00);
+        width: 68%;
+        height: 90%;
+        padding: .3rem;
+        border-radius: 25px;
+    }
+    .juegMasVisitas {
+        height: 100%;
+        width: 100%;
+        background-color: rgb(138, 138, 138);
+        border-radius: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .juegTop {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .juegTop div {
+        background-image: linear-gradient(to right, #ff4d00, #ff5700, #ff6000, #ff6800, #ff7000, #ff7f00, #ff8e00, #ff9c00, #ffb400, #ffcd00, #ffe600, #faff00);
+        width: 15rem;
+        height: 4rem;
+        border-radius: 15px;
+        padding: .2rem;
+    }
+    .juegTop div p {
+        border-radius: 15px;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.3em;
+    }
+    /* fin home desktop */
 }
