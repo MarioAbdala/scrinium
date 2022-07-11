@@ -33,6 +33,30 @@ header {
     z-index: 5;
 }
 
+.inicioDesktop {
+    display: none;
+    background-color: var(--main-black);
+    width: 100%;
+    height: 100vh;
+}
+
+.inicioDesktop span {
+    width: 90%;
+    height: 5rem;
+    border-radius: 30px;
+    background-color: #cb69c185;
+    padding: 1rem 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inicioDesktop span p {
+    margin: 0;
+    font-size: 1.4em;
+    text-align: center;
+}
+
 #logo {
     width: 50%;
     transform: translateY(50px);
@@ -939,6 +963,12 @@ section {
         max-width: 10vh;
         max-height: 10vh;
         transform: none!important;
+    }
+    .inicioDesktop {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
     }
     .navbar {
         max-height: 10vh;
