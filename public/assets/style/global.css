@@ -997,7 +997,8 @@ section {
     main {
         margin-top: 0px!important;
         display: block!important;
-        background: red!important;
+        /* background: red!important; */
+        background: var(--main-black);
     }
     /* home desktop */
     .masPopSemana {
@@ -1057,18 +1058,70 @@ section {
         align-items: center;
         font-size: 1.3em;
     }
+    .patrocinadores {
+        display: flex;
+        background-color: var(--main-black);
+        border: 1px solid white;
+    }
     #titCategorias {
         display: flex;
     }
     .hs {
         grid-template-columns: 10px repeat(var(--total), calc(22% - var(--gutter) * 2)) 10px;
         height: fit-content;
+        overflow-y: hidden;
     }
     .card {
         height: 18rem;
     }
     .card img {
         height: 100%;
+    }
+    .carruselGnrosDerecha {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 19rem;
+        justify-content: space-around;
+    }
+    #carruselIzqGnros {
+        width: 55%;
+    }
+    #carruselIzqGnros .hs {
+        display: grid;
+        gap: calc(var(--gutter) * 6);
+        grid-template-columns: 10px repeat(var(--total), calc(38% - var(--gutter) * 2)) 10px;
+        grid-template-rows: minmax(150px, 1fr);
+        height: fit-content;
+        overflow-y: hidden;
+    }
+    .sectionGeneros {
+        width: 40%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .carrGnros {
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(to right, #ff0000, #ff0045, #ff007b, #ff00b5, #e800ed);
+        padding: .25rem;
+        border-radius: 25px;
+    }
+    .contTodosGnros {
+        background-color: var(--main-black);
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 25px;
+        padding: .6rem;
+        width: 100%;
+        height: 100%;
+    }
+    .contTodosGnros a {
+        font-size: 1.8em;
+        color: rgb(255, 255, 255);
+        text-decoration: none;
     }
     /* fin home desktop */
 }
