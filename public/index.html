@@ -17,18 +17,22 @@
     <div id="app">
         <header>
             <nav class="navbar">
-                <a href="#" id="home-icon-container" v-on:click="() => {title='Home';juegoActivo=[];restoreHeader()}"><span class="material-icons" id="home-icon">home</span></a>
+                <a href="#" id="home-icon-container"
+                    v-on:click="() => {title='Home';juegoActivo=[];restoreHeader()}"><span class="material-icons"
+                        id="home-icon">home</span></a>
                 <img id="logo" src="assets/img/favicon.png" alt="scrinium_logo">
                 <ul class="nav-menu">
                     <!-- se puede cambiar, lo agregué acá mientras trabajo para ir y venir: -->
                     <li class="nav-item">
-                        <a href="#" v-on:click="() => {burgerToggle();title = 'Login'}" class="nav-link">Login</a>
+                        <a href="#" v-on:click="() => {burgerToggle();title = 'Login'; destroyHeader()}"
+                            class="nav-link">Login</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" v-on:click="() => {burgerToggle();title = 'Profile'}" class="nav-link">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" v-on:click="() => {burgerToggle();title = 'Game Request'}" class="nav-link">Game Request</a>
+                        <a href="#" v-on:click="() => {burgerToggle();title = 'Game Request'}" class="nav-link">Game
+                            Request</a>
                     </li>
                 </ul>
                 <div class="hamburger" v-on:click="burgerToggle">
@@ -83,24 +87,28 @@
 
                 <!-- {{autoSearch}}
                 {{loadAllGames}}
+                {{checkLogin}}
                 <div id="results-container" v-show="busqueda != ''">
                     <h2>Resultados de "{{busqueda}}"</h2>
-                        <div class="item" v-for="juego in juegosFiltrados">
-                            <a class="card-link" href="#" v-on:click="() => {title='Juego'; juegoActivo = juego; removeHeader(juego[1].imagen)}">
-                                <div class="card">
-                                    <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
-                                    <div v-bind:class="returnClass(juego[1].nombre)">
-                                        <p>{{juego[1].nombre}}</p>
-                                    </div>
+                    <div class="item" v-for="juego in juegosFiltrados">
+                        <a class="card-link" href="#"
+                            v-on:click="() => {title='Juego'; juegoActivo = juego; removeHeader(juego[1].imagen)}">
+                            <div class="card">
+                                <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
+                                <div v-bind:class="returnClass(juego[1].nombre)">
+                                    <p>{{juego[1].nombre}}</p>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="carousel" v-for="categoria in categorias.sort()" v-show="busqueda == ''">
                     <h2>{{categoria}}</h2>
                     <ul class="hs full" v-bind:style="returnLength(categoria)">
-                        <li class="item" v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
-                            <a class="card-link" href="#" v-on:click="() => {title='Juego'; juegoActivo = juego; removeHeader(juego[1].imagen)}">
+                        <li class="item"
+                            v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
+                            <a class="card-link" href="#"
+                                v-on:click="() => {title='Juego'; juegoActivo = juego; removeHeader(juego[1].imagen)}">
                                 <div class="card">
                                     <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
                                     <div v-bind:class="returnClass(juego[1].nombre)">
@@ -168,7 +176,9 @@
                         </li>
                     </ul>
                 </div>
+
                 <!-- otro carrusel más para ejemplificar lo de los géneros en el costado derecho: -->
+
                 <div class="carruselGnrosDerecha">
                     <div class="carousel" id="carruselIzqGnros">
                         <h2>Aventura</h2>
@@ -326,28 +336,29 @@
                         <img src="assets/img/favicon.png" alt="scrinium_logo">
                     </div>
 
-                    <div class="emailYPass">
+                    <div class="emailYPass" v-show="!usuario">
                         <input type="email" placeholder="Email">
                         <input type="password" placeholder="Password">
                     </div>
 
                     <div class="msjeUsuarios">
                         <div class="contMsjeUsers">
-                            <p>mensaje para los usuarios al estilo, ¿todavia no estas registrado? VAMOS! empieza a compartir tu sabiduria con tus compañeros!</p>
+                            <p v-show="!usuario">Registrate para empezar a formar parte de Scrinium!</p>
+                            <p v-show="usuario">Iniciaste sesión correctamente.</p>
                         </div>
                     </div>
 
                     <div class="btnesLogin">
-                        <button id="btnLogin" class="btonSeccLogin">
+                        <button id="quickstart-sign-in" class="btonSeccLogin" v-on:click="toggleSignIn">
                             Login
                         </button>
-                        <button id="btnSignin" class="btonSeccLogin" v-on:click="title = 'Registration'">
-                            Sign in
+                        <button v-show="!usuario" id="sign-up-button" class="btonSeccLogin" v-on:click="title = 'Registration'">
+                            Sign up
                         </button>
                     </div>
 
-                    <div id="contenedorGradient">
-                        <div class="btnGoogleSignIn">
+                    <div id="contenedorGradient" v-show="!usuario">
+                        <div id="quickstart-google-sign-in" class="btnGoogleSignIn" v-on:click="toggleGoogleSignIn">
                             <p>
                                 <img src="./assets/img/google.png" alt="logo-sign-in-google">
                                 Sign in with Google
@@ -357,59 +368,12 @@
                 </div>
             </section>
 
-            <!-- registro de usuario -->
-            <section v-show="title == 'Registration'" id="registration">
-                <div class="inputsRegistro">
-                    <input type="email" placeholder="Email">
-                    <input type="password" placeholder="Contraseña">
-                    <input type="text" placeholder="Nombre de usuario">
-                </div>
+            <!-- sección de usuario -->
 
-                <div class="generosRegistro">
-                    <select name="" id="">
-                        <option value="genero1">Genero fav 1</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="genero2">Genero fav 2</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="genero3">Genero fav 3</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="genero4">Genero fav 4</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="genero5">Genero fav 5</option>
-                    </select>
-                </div>
-
-                <div class="checkboxesRegistro">
-                    <span>
-                        <label for="termsAndCond">Aceptación de términos y condiciones</label>
-                        <input id="primerInput" type="checkbox" name="termsAndCond" required>
-                    </span>
-                    <span>
-                        <label for="notifJuegosDeseados">¿Desea recibir notificaciones sobre sus juegos deseados?</label>
-                        <input type="checkbox" name="notifJuegosDeseados">
-                    </span>
-                </div>
-                
-
-                <div class="btnesRegistro">
-                    <button>
-                        Cancelar
-                    </button>
-                    <button>
-                        Enviar
-                    </button>
-                </div>
-            </section>
-
-            <!-- perfil del usuario -->
-            <section v-show="title == 'Profile'" id="profile">
+            <section v-show="title=='Profile'" id="profile">
                 <div class="infoUsuario">
                     <p>
-                        Nombre de usuario
+                        {{usuarioNombre || usuarioEmail}}
                     </p>
                     <p>
                         Algo extra, ¿apodo?
@@ -578,25 +542,78 @@
                 </div>
             </section>
 
+            <!-- registro de usuario -->
+            <section v-show="title == 'Registration'" id="registration">
+                <div class="inputsRegistro">
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Contraseña">
+                    <input type="text" placeholder="Nombre de usuario">
+                </div>
+
+                <div class="generosRegistro">
+                    <select name="" id="">
+                        <option value="genero1">Genero fav 1</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="genero2">Genero fav 2</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="genero3">Genero fav 3</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="genero4">Genero fav 4</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="genero5">Genero fav 5</option>
+                    </select>
+                </div>
+
+                <div class="checkboxesRegistro">
+                    <span>
+                        <label for="termsAndCond">Aceptación de términos y condiciones</label>
+                        <input id="primerInput" type="checkbox" name="termsAndCond" required>
+                    </span>
+                    <span>
+                        <label for="notifJuegosDeseados">¿Desea recibir notificaciones sobre sus juegos
+                            deseados?</label>
+                        <input type="checkbox" name="notifJuegosDeseados">
+                    </span>
+                </div>
+
+
+                <div class="btnesRegistro">
+                    <button>
+                        Cancelar
+                    </button>
+                    <button>
+                        Enviar
+                    </button>
+                </div>
+            </section>
+
             <!-- detalle de cada juego -->
             <section v-if="title == 'Juego'" id="gameDetail">
                 <div class="tiendasDondeEsta">
-                    <a v-bind:href="juegoActivo[1].tiendas.steam" v-if="juegoActivo[1].tiendas.steam != ''" target="blank">
+                    <a v-bind:href="juegoActivo[1].tiendas.steam" v-if="juegoActivo[1].tiendas.steam != ''"
+                        target="blank">
                         <div>
                             <img class="store-logo" src="assets/img/steam_logo.png" alt="steam-logo">
                         </div>
                     </a>
-                    <a v-bind:href="juegoActivo[1].tiendas.epic" v-if="juegoActivo[1].tiendas.epic != ''" target="blank">
+                    <a v-bind:href="juegoActivo[1].tiendas.epic" v-if="juegoActivo[1].tiendas.epic != ''"
+                        target="blank">
                         <div>
                             <img class="store-logo" src="assets/img/epic_games_logo.png" alt="epic-games-logo">
                         </div>
                     </a>
-                    <a v-bind:href="juegoActivo[1].tiendas.microsoft" v-if="juegoActivo[1].tiendas.microsoft != ''" target="blank">
+                    <a v-bind:href="juegoActivo[1].tiendas.microsoft" v-if="juegoActivo[1].tiendas.microsoft != ''"
+                        target="blank">
                         <div>
                             <img class="store-logo" src="assets/img/xbox_logo.png" alt="xbox-logo">
                         </div>
                     </a>
-                    <a v-bind:href="juegoActivo[1].tiendas.blizzard" v-if="juegoActivo[1].tiendas.blizzard != ''" target="blank">
+                    <a v-bind:href="juegoActivo[1].tiendas.blizzard" v-if="juegoActivo[1].tiendas.blizzard != ''"
+                        target="blank">
                         <div>
                             <img class="store-logo" src="assets/img/blizzard_logo.png" alt="blizzard-logo">
                         </div>
@@ -606,12 +623,14 @@
                             <img class="store-logo" src="assets/img/ea_logo.png" alt="ea-logo">
                         </div>
                     </a>
-                    <a v-bind:href="juegoActivo[1].tiendas.playstation" v-if="juegoActivo[1].tiendas.playstation != ''" target="blank">
+                    <a v-bind:href="juegoActivo[1].tiendas.playstation" v-if="juegoActivo[1].tiendas.playstation != ''"
+                        target="blank">
                         <div>
                             <img class="store-logo" src="assets/img/playstation_logo.png" alt="playstation-logo">
                         </div>
                     </a>
-                    <a v-bind:href="juegoActivo[1].tiendas.nintendo" v-if="juegoActivo[1].tiendas.nintendo != ''" target="blank">
+                    <a v-bind:href="juegoActivo[1].tiendas.nintendo" v-if="juegoActivo[1].tiendas.nintendo != ''"
+                        target="blank">
                         <div>
                             <img class="store-logo" src="assets/img/nintendo_logo.png" alt="nintendo-logo">
                         </div>
@@ -624,7 +643,7 @@
                         <p>{{juegoActivo.length>0 && juegoActivo[1].descripcion}}</p>
                     </div>
                 </div>
-                
+
                 <div class="carousel" id="generos">
                     <ul class="hs full hsGeneros" v-bind:style="returnArrayLength(juegoActivo[1].categorias)">
                         <li class="item detailItem" v-for="categoria in juegoActivo[1].categorias.sort()">
@@ -665,15 +684,19 @@
                         <button class="reseñasFiltros">Filtros</button>
                     </span>
                     <div class="reseñas">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, rem aspernatur quibusdam consequatur reiciendis dolorem blanditiis dolores repellat perspiciatis vitae consequuntur, vel eligendi tenetur expedita alias, quia porro a mollitia.</p>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, rem aspernatur quibusdam
+                            consequatur reiciendis dolorem blanditiis dolores repellat perspiciatis vitae consequuntur,
+                            vel eligendi tenetur expedita alias, quia porro a mollitia.</p>
                     </div>
                 </div>
 
                 <div class="contJuegosRel">
                     <h2>Juegos Relacionados</h2>
                     <div class="carousel juegosRel">
-                        <ul class="hs full hsCarJuegosRel" v-bind:style="returnArrayLength(juegoActivo[1].relacionados)">
-                            <li class="item" v-for="juego in juegos.filter(juego => juegoActivo[1].relacionados.includes(juego[0]))">
+                        <ul class="hs full hsCarJuegosRel"
+                            v-bind:style="returnArrayLength(juegoActivo[1].relacionados)">
+                            <li class="item"
+                                v-for="juego in juegos.filter(juego => juegoActivo[1].relacionados.includes(juego[0]))">
                                 <a href="#" v-on:click="juegoActivo = juego">
                                     <div class="card">
                                         <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
@@ -701,7 +724,7 @@
         </main>
 
         <footer>
-            
+
         </footer>
 
     </div>

@@ -223,6 +223,7 @@ Vue.createApp({
         },
         restoreHeader: function () {
             if (window.innerWidth < 768) {
+                document.documentElement.style.overflow = "scroll";
                 window.scrollTo(0, 0);
                 document.getElementById("logo").style.display = "block";
                 document.getElementById("logo").style.transform = "none";
@@ -246,6 +247,24 @@ Vue.createApp({
                 document.getElementsByTagName("main")[0].style.marginTop = "200px";
                 window.removeEventListener("scroll", this.homeScroll);
                 window.addEventListener("scroll", this.gameScroll);
+            }
+        },
+        destroyHeader: function () {
+            if (window.innerWidth < 768) {
+                document.documentElement.style.overflow = "hidden";
+                window.removeEventListener("scroll", this.homeScroll);
+                window.removeEventListener("scroll", this.gameScroll);
+                document.getElementsByTagName("header")[0].style.padding = "5px 10px 5px 10px";
+                document.getElementsByTagName('header')[0].style.backgroundImage = 'none';
+                document.getElementsByTagName('header')[0].style.background = 'var(--main-purple)';
+                document.getElementsByTagName('header')[0].style.background = 'radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)';
+                document.getElementsByTagName("main")[0].style.marginTop = "91px";
+                document.getElementById("logo").style.display = "block";
+                document.getElementById("logo").style.width = "50px";
+                document.getElementById("logo").style.transform = "none";
+                document.getElementById("home-icon-container").style.alignSelf = "center";
+                document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
+                document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
             }
         }
     },

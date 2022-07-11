@@ -169,6 +169,10 @@ section {
     align-items: flex-start;
 }
 
+.carruselGnrosDerecha{
+    display: none;
+}
+
 #results-container {
     width: 100%;
     display: flex;
@@ -279,6 +283,13 @@ section {
 }
 
 /* sección login */
+
+#login-stage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #login {
     width: 100%;
     background-color: rgba(118, 78, 138, 255);
@@ -290,7 +301,7 @@ section {
 #contenedorLogin {
     margin: 1.3rem 0rem;
     width: 90%;
-    height: 90vh;
+    height: 85vh;
     border-radius: 30px;
     background-color: #17181F;
     display: flex;
@@ -364,11 +375,11 @@ section {
     color: white;
 }
 
-#btnLogin {
+#quickstart-sign-in {
     background-color: #6C72CB;
 }
 
-#btnSignin {
+#sign-up-button {
     background-color: #CB69C1;
 }
 
