@@ -870,6 +870,12 @@ section {
 #titCategorias {
     display: none;
 }
+.sectionGeneros {
+    display: none;
+}
+.sobreNosotros {
+    display: none;
+}
 /* fin home desktop */
 
 @keyframes move-two-lines {
@@ -1122,6 +1128,32 @@ section {
         font-size: 1.8em;
         color: rgb(255, 255, 255);
         text-decoration: none;
+    }
+    .sobreNosotros {
+        margin: 6rem 0rem;
+        width: 100%;
+        height: 15rem;
+        display: flex;
+        flex-direction: row;
+    }
+    .contOurInfo {
+        width: 33.3%;
+        height: 100%;
+        padding: .25rem;
+    }
+    #cont1 {
+        background-image: linear-gradient(to right, #ff4d00, #ff5700, #ff6000, #ff6800, #ff7000, #ff7f00, #ff8e00, #ff9c00, #ffb400, #ffcd00, #ffe600, #faff00);
+    }
+    #cont2 {
+        background-image: linear-gradient(to right, #0c24fa, #0039fc, #0049fd, #0057fc, #0063fb, #006ffc, #007afd, #0084fc, #0091fd, #009cfc, #00a7fa, #0db1f6);
+    }
+    #cont3 {
+        background-image: linear-gradient(to right, #ff0000, #ff0045, #ff007b, #ff00b5, #e800ed);
+    }
+    .ourInfo {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(141, 141, 141);
     }
     /* fin home desktop */
 }
