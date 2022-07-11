@@ -23,11 +23,11 @@
                 <img id="logo" src="assets/img/favicon.png" alt="scrinium_logo">
                 <ul class="nav-menu">
                     <!-- se puede cambiar, lo agregué acá mientras trabajo para ir y venir: -->
-                    <li class="nav-item">
+                    <li class="nav-item" v-show="!usuario">
                         <a href="#" v-on:click="() => {burgerToggle();title = 'Login'; destroyHeader()}"
                             class="nav-link">Login</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-show="usuario">
                         <a href="#" v-on:click="() => {burgerToggle();title = 'Profile'}" class="nav-link">Profile</a>
                     </li>
                     <li class="nav-item">
@@ -336,15 +336,14 @@
                         <img src="assets/img/favicon.png" alt="scrinium_logo">
                     </div>
 
-                    <div class="emailYPass" v-show="!usuario">
+                    <div class="emailYPass">
                         <input type="email" placeholder="Email">
                         <input type="password" placeholder="Password">
                     </div>
 
                     <div class="msjeUsuarios">
                         <div class="contMsjeUsers">
-                            <p v-show="!usuario">Registrate para empezar a formar parte de Scrinium!</p>
-                            <p v-show="usuario">Iniciaste sesión correctamente.</p>
+                            <p>Registrate para empezar a formar parte de Scrinium!</p>
                         </div>
                     </div>
 
@@ -357,8 +356,8 @@
                         </button>
                     </div>
 
-                    <div id="contenedorGradient" v-show="!usuario">
-                        <div id="quickstart-google-sign-in" class="btnGoogleSignIn" v-on:click="toggleGoogleSignIn">
+                    <div id="contenedorGradient">
+                        <div id="quickstart-google-sign-in" class="btnGoogleSignIn" v-on:click="() => {toggleGoogleSignIn(); title='Home'; restoreHeader()}">
                             <p>
                                 <img src="./assets/img/google.png" alt="logo-sign-in-google">
                                 Sign in with Google
@@ -375,9 +374,7 @@
                     <p>
                         {{usuarioNombre || usuarioEmail}}
                     </p>
-                    <p>
-                        Algo extra, ¿apodo?
-                    </p>
+                    <button id="quickstart-sign-out"class="btonSeccLogin" v-on:click="signOut">Logout</button>
                 </div>
 
                 <h3>Juegos agregados a favoritos</h3>
@@ -681,12 +678,17 @@
                 <div class="contReseñas">
                     <span>
                         <h2>Reseñas</h2>
-                        <button class="reseñasFiltros">Filtros</button>
+                        <!-- <button class="reseñasFiltros">Filtros</button> -->
+                        <label for="comment">Dejá un comentario!</label>
+                        <input type="text" id="comment">
+                        <button v-on:click="addComments(juegoActivo[0])">Enviar</button>
                     </span>
                     <div class="reseñas">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, rem aspernatur quibusdam
-                            consequatur reiciendis dolorem blanditiis dolores repellat perspiciatis vitae consequuntur,
-                            vel eligendi tenetur expedita alias, quia porro a mollitia.</p>
+                        <div v-for="comentario in juegoActivo[1].comentarios">
+                            <img v-bind:src="comentario.photo" alt="user-photo">
+                            <p>{{comentario.user}}</p>
+                            <p>{{comentario.comment}}</p>
+                        </div>
                     </div>
                 </div>
 
@@ -732,6 +734,7 @@
     <script src="/__/firebase/9.8.3/firebase-database-compat.js"></script>
     <script src="/__/firebase/9.8.3/firebase-auth-compat.js"></script>
     <script src="/__/firebase/init.js"></script> -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="assets/scripts/main.js"></script>
 </body>

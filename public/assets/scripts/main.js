@@ -8,7 +8,6 @@ Vue.createApp({
             usuarioNombre: "",
             juegos: [],
             categorias: [],
-            comments: [],
             juegosFiltrados: [],
             busqueda: "",
             juegoActivo: [],
@@ -25,21 +24,6 @@ Vue.createApp({
             const n = el.children.length;
             el.style.setProperty('--total', n);
         });
-        // window.onload = function () {
-        //     firebase.auth().onAuthStateChanged(function (user) {
-        //         if (user) {
-        //             this.usuario = user;
-        //             document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-        //             document.getElementById('quickstart-google-sign-in').textContent = 'Sign out';
-        //         } else {
-        //             document.getElementById('quickstart-sign-in').textContent = 'Sign in';
-        //             document.getElementById('quickstart-google-sign-in').textContent = 'Sign in with Google';
-        //         }
-        //         document.getElementById('quickstart-sign-in').disabled = false;
-        //         document.getElementById('quickstart-google-sign-in').disabled = false;
-        //     });
-        // };
-
     },
     methods: {
         burgerToggle: function () {
@@ -73,16 +57,28 @@ Vue.createApp({
                     console.log(error);
                     document.getElementById('quickstart-sign-in').disabled = false;
                 });
+                this.title = "Home";
+                Swal.fire(
+                    'Logged in',
+                    'Successful login',
+                    'success'
+                )
             }
             document.getElementById('quickstart-sign-in').disabled = true;
         },
         toggleGoogleSignIn: function () {
+            let section = "Login";
             if (!firebase.auth().currentUser) {
                 var provider = new firebase.auth.GoogleAuthProvider();
                 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
                 firebase.auth().signInWithPopup(provider).then(function (result) {
                     var token = result.credential.accessToken;
                     var user = result.user;
+                    Swal.fire(
+                        'Logged in',
+                        'Successful login',
+                        'success'
+                    );
                 }).catch(function (error) {
                     var errorCode = error.code;
                     var errorMessage = error.message;
@@ -98,6 +94,10 @@ Vue.createApp({
                 firebase.auth().signOut();
             }
             document.getElementById('quickstart-google-sign-in').disabled = true;
+        },
+        signOut: function () {
+            firebase.auth().signOut();
+            this.title = "Home";
         },
         handleSignUp: function () {
             var email = document.getElementById('email').value;
@@ -140,14 +140,14 @@ Vue.createApp({
         },
         addComments: function (juego) {
             let comentario = {
-                comment: document.getElementById(`comment-${juego}`).value,
-                game: juego,
+                comment: document.getElementById("comment").value,
+                // game: juego,
                 user: this.usuarioNombre || this.usuarioEmail,
                 photo: this.usuarioFoto
             };
-            let newCommentKey = firebase.database().ref().child('Comentarios').push().key;
+            let newCommentKey = firebase.database().ref(`Juegos/${juego}/comentarios`).push().key;
             var update = {};
-            update['Comentarios/' + newCommentKey] = comentario;
+            update[`Juegos/${juego}/comentarios/${newCommentKey}`] = comentario;
             firebase.database().ref().update(update);
             document.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
         },
@@ -284,17 +284,6 @@ Vue.createApp({
                     this.usuarioNombre = "";
                 }
             })
-        },
-        checkComments: function () {
-            firebase.database().ref('Comentarios/').on("child_added", (data) => {
-                let comentario = {
-                    comment: data.val().comment,
-                    game: data.val().game,
-                    user: data.val().user,
-                    photo: data.val().photo
-                };
-                this.comments = [...this.comments, comentario];
-            });
         },
         loadAllGames: function () {
             firebase.database().ref('Juegos').on('value', (snapshot) => {
