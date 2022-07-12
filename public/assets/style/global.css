@@ -810,15 +810,28 @@ section {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: .25rem;
 }
 
 .comment-header-left{
     width: 60%;
     display: flex;
+    justify-content: center;
 }
 
 .comment-header-left>p{
-    width: 40%;
+    font-size: 18px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment-date{
+    font-size: 16px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 15px 0 0;
 }
 
 .comment-photo{
@@ -829,6 +842,10 @@ section {
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+.comment-content>p{
+    border-radius: 0 0 15px 15px;
 }
 
 #new-comment{
@@ -852,7 +869,9 @@ section {
 
 .reseñas {
     background-image: linear-gradient(to right, #0c24fa, #0039fc, #0049fd, #0057fc, #0063fb, #006ffc, #007afd, #0084fc, #0091fd, #009cfc, #00a7fa, #0db1f6);
-    padding: .3rem 0rem;
+    padding: .25rem;
+    border-radius: 15px;
+    margin-bottom: .5rem;
 }
 
 .reseñas p {

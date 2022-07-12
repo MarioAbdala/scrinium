@@ -68,7 +68,6 @@ Vue.createApp({
             document.getElementById('quickstart-sign-in').disabled = true;
         },
         toggleGoogleSignIn: function () {
-            let section = "Login";
             if (!firebase.auth().currentUser) {
                 var provider = new firebase.auth.GoogleAuthProvider();
                 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -142,10 +141,11 @@ Vue.createApp({
         addComments: function (juego) {
             let comentario = {
                 comment: document.getElementById("comment").value,
-                date: (new Date(Date.now())).toString(),
+                date: (new Date(Date.now())).toString().substring(4, 21),
                 user: this.usuarioNombre || this.usuarioEmail,
                 photo: this.usuarioFoto
             };
+            this.comments = [...this.comments, comentario]
             let newCommentKey = firebase.database().ref(`Juegos/${juego}/comentarios`).push().key;
             var update = {};
             update[`Juegos/${juego}/comentarios/${newCommentKey}`] = comentario;
@@ -267,6 +267,15 @@ Vue.createApp({
                 document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
                 document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
             }
+        },
+        generateComments(comentarios) {
+            this.comments = [];
+            if (comentarios) {
+                let comms = Object.values(comentarios);
+                if (comms.length > 0) {
+                    comms.forEach(comentario => this.comments = [...this.comments, comentario]);
+                }
+            }
         }
     },
     computed: {
@@ -285,22 +294,6 @@ Vue.createApp({
                     this.usuarioNombre = "";
                 }
             })
-        },
-        checkComments: function () {
-            if (this.juegoActivo.length > 0){
-                firebase.database().ref(`Juegos/${this.juegoActivo[0]}/comentarios`).on("child_added", (data) => {
-                    let comentario = {
-                        comment: data.val().comment,
-                        user: data.val().user,
-                        photo: data.val().photo,
-                        date: data.val().date,
-                    };
-                    !this.comments.includes(comentario) && (this.comments = [...this.comments, comentario]);
-                });
-            }
-            else{
-                this.comments = [];
-            };
         },
         loadAllGames: function () {
             firebase.database().ref('Juegos').on('value', (snapshot) => {
