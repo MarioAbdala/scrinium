@@ -13,6 +13,7 @@ Vue.createApp({
             juegoActivo: [],
             comments: [],
             favoritos: [],
+            deseados: [],
             favorite: false,
             deseado: false
         }
@@ -175,6 +176,7 @@ Vue.createApp({
                     if (entry[1] == this.usuario.uid) {
                         firebase.database().ref(`Juegos/${juego}/favoritos/${entry[0]}`).remove();
                         this.favorite = false;
+                        // this.favoritos.filter(game => game[0] != juego);
                     }
                 });
             };
@@ -188,6 +190,12 @@ Vue.createApp({
                     }
                 });
             };
+        },
+        loadCategory: function (categoria){
+            this.title = "Home";
+            this.juegoActivo = [];
+            this.busqueda = categoria;
+            this.restoreHeader();
         },
         returnLength: function (category) {
             return `--total: ${this.juegos.filter(juego => juego[1].categorias.includes(category)).length}`;
@@ -330,7 +338,7 @@ Vue.createApp({
         }
     },
     computed: {
-        checkLogin: function () {
+        loadAllGames: function () {
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
                     this.usuario = user;
@@ -346,7 +354,7 @@ Vue.createApp({
                 }
             })
         },
-        loadAllGames: function () {
+        checkLogin: function () {
             firebase.database().ref('Juegos').on('value', (snapshot) => {
                 this.juegos = Object.entries(snapshot.val());
             });
@@ -361,16 +369,6 @@ Vue.createApp({
             else {
                 this.juegosFiltrados = this.juegos.filter(juego => juego[1].nombre.toUpperCase().includes(this.busqueda.toUpperCase()));
             };
-        },
-        // checkFavs: function() {
-        //     if (this.juegoActivo.length > 0){
-        //         firebase.database().ref(`Juegos/${this.juegoActivo[0]}`).on('child_added', (snapshot) => {
-        //             console.log(snapshot)
-        //         });
-        //         firebase.database().ref(`Juegos/${this.juegoActivo[0]}`).on('child_removed', (snapshot) => {
-        //             console.log(snapshot)
-        //         })
-        //     }
-        // }
+        }
     }
 }).mount('#app');
