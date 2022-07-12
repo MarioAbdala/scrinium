@@ -751,13 +751,14 @@ section {
     overflow-y: clip!important;
 }
 
-.textoTarj p {
+.card-text-relacionado{
     height: 1.5rem;
     width: 100%;
     font-size: 18px!important;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 .reqTecnicos {

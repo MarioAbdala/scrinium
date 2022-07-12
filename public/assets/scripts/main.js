@@ -13,7 +13,8 @@ Vue.createApp({
             juegoActivo: [],
             comments: [],
             favoritos: [],
-            favorite: false
+            favorite: false,
+            deseado: false
         }
     },
     created() {
@@ -154,23 +155,38 @@ Vue.createApp({
             firebase.database().ref().update(update);
             document.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
         },
-        favGame: function (juego, favoritos) {
-            let alreadyFav = false;
+        favGame: function (juego) {
+            let newFavKey = firebase.database().ref(`Juegos/${juego}/favoritos`).push().key;
+            var update = {}
+            update[`Juegos/${juego}/favoritos/${newFavKey}`] = this.usuario.uid;
+            firebase.database().ref().update(update);
+            this.favorite = true;
+        },
+        desiredGame: function (juego) {
+            let newDesKey = firebase.database().ref(`Juegos/${juego}/deseados`).push().key;
+            var update = {}
+            update[`Juegos/${juego}/deseados/${newDesKey}`] = this.usuario.uid;
+            firebase.database().ref().update(update);
+            this.deseado = true;
+        },
+        removeFavGame: function (juego, favoritos) {
             if (favoritos) {
                 Object.entries(favoritos).forEach(entry => {
                     if (entry[1] == this.usuario.uid) {
                         firebase.database().ref(`Juegos/${juego}/favoritos/${entry[0]}`).remove();
-                        alreadyFav = true;
                         this.favorite = false;
                     }
                 });
-            }
-            if (!alreadyFav) {
-                let newFavKey = firebase.database().ref(`Juegos/${juego}/favoritos`).push().key;
-                var update = {}
-                update[`Juegos/${juego}/favoritos/${newFavKey}`] = this.usuario.uid;
-                firebase.database().ref().update(update);
-                this.favorite = true;
+            };
+        },
+        removeDesGame: function (juego, deseados) {
+            if (deseados) {
+                Object.entries(deseados).forEach(entry => {
+                    if (entry[1] == this.usuario.uid) {
+                        firebase.database().ref(`Juegos/${juego}/deseados/${entry[0]}`).remove();
+                        this.deseado = false;
+                    }
+                });
             };
         },
         returnLength: function (category) {
@@ -289,21 +305,28 @@ Vue.createApp({
                 document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
             }
         },
-        generateComments(comentarios, favoritos) {
+        generateContent(comentarios, favoritos, deseados) {
             this.comments = [];
             if (comentarios) {
                 let comms = Object.values(comentarios);
                 if (comms.length > 0) {
                     comms.forEach(comentario => this.comments = [...this.comments, comentario]);
                 }
-            }
+            };
             if (favoritos) {
                 Object.entries(favoritos).forEach(entry => {
                     if (entry[1] == this.usuario.uid) {
                         this.favorite = true;
                     }
                 });
-            }
+            };
+            if (deseados) {
+                Object.entries(deseados).forEach(entry => {
+                    if (entry[1] == this.usuario.uid) {
+                        this.deseado = true;
+                    }
+                });
+            };
         }
     },
     computed: {
