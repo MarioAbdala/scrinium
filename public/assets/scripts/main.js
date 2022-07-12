@@ -11,6 +11,7 @@ Vue.createApp({
             juegosFiltrados: [],
             busqueda: "",
             juegoActivo: [],
+            comments: []
         }
     },
     created() {
@@ -141,7 +142,7 @@ Vue.createApp({
         addComments: function (juego) {
             let comentario = {
                 comment: document.getElementById("comment").value,
-                // game: juego,
+                date: (new Date(Date.now())).toString(),
                 user: this.usuarioNombre || this.usuarioEmail,
                 photo: this.usuarioFoto
             };
@@ -284,6 +285,22 @@ Vue.createApp({
                     this.usuarioNombre = "";
                 }
             })
+        },
+        checkComments: function () {
+            if (this.juegoActivo.length > 0){
+                firebase.database().ref(`Juegos/${this.juegoActivo[0]}/comentarios`).on("child_added", (data) => {
+                    let comentario = {
+                        comment: data.val().comment,
+                        user: data.val().user,
+                        photo: data.val().photo,
+                        date: data.val().date,
+                    };
+                    !this.comments.includes(comentario) && (this.comments = [...this.comments, comentario]);
+                });
+            }
+            else{
+                this.comments = [];
+            };
         },
         loadAllGames: function () {
             firebase.database().ref('Juegos').on('value', (snapshot) => {

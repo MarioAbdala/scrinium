@@ -795,12 +795,51 @@ section {
 .contReseñas span {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     padding: 0rem 1rem;
     margin-bottom: .7rem;
 }
 
-.reseñasFiltros {
+.comment-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.comment-header-left{
+    width: 60%;
+    display: flex;
+}
+
+.comment-header-left>p{
+    width: 40%;
+}
+
+.comment-photo{
+    border-radius: 50%;
+}
+
+.comment-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#new-comment{
+    display: flex;
+}
+
+#new-comment input{
+    width: 100%;
+}
+
+/* .reseñasFiltros {
     padding: 10px 15px;
     font-size: 2em;
     border-radius: 18px;
@@ -809,7 +848,7 @@ section {
     height: 3.5rem;
     display: flex;
     align-items: center;
-}
+} */
 
 .reseñas {
     background-image: linear-gradient(to right, #0c24fa, #0039fc, #0049fd, #0057fc, #0063fb, #006ffc, #007afd, #0084fc, #0091fd, #009cfc, #00a7fa, #0db1f6);

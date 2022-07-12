@@ -88,6 +88,7 @@
                 <!-- {{autoSearch}}
                 {{loadAllGames}}
                 {{checkLogin}}
+                {{checkComments}}
                 <div id="results-container" v-show="busqueda != ''">
                     <h2>Resultados de "{{busqueda}}"</h2>
                     <div class="item" v-for="juego in juegosFiltrados">
@@ -678,18 +679,26 @@
                 <div class="contReseñas">
                     <span>
                         <h2>Reseñas</h2>
-                        <!-- <button class="reseñasFiltros">Filtros</button> -->
-                        <label for="comment">Dejá un comentario!</label>
-                        <input type="text" id="comment">
-                        <button v-on:click="addComments(juegoActivo[0])">Enviar</button>
-                    </span>
-                    <div class="reseñas">
-                        <div v-for="comentario in juegoActivo[1].comentarios">
-                            <img v-bind:src="comentario.photo" alt="user-photo">
-                            <p>{{comentario.user}}</p>
-                            <p>{{comentario.comment}}</p>
+                        <div class="reseñas">
+                            <div v-for="comentario in comments" class="comment-container">
+                                <div class="comment-header">
+                                    <div class="comment-header-left">
+                                        <img v-bind:src="comentario.photo" alt="user-photo" class="comment-photo">
+                                        <p><b>{{comentario.user}}</b></p>
+                                    </div>
+                                    <p>{{comentario.date}}</p>
+                                </div>
+                                <div class="comment-content">
+                                    <p>{{comentario.comment}}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <label for="comment">Dejá un comentario!</label>
+                        <div v-show="usuario" id="new-comment">
+                            <input type="text" id="comment">
+                            <button v-on:click="addComments(juegoActivo[0])">Enviar</button>
+                        </div>
+                    </span>
                 </div>
 
                 <div class="contJuegosRel">
