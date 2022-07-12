@@ -11,7 +11,9 @@ Vue.createApp({
             juegosFiltrados: [],
             busqueda: "",
             juegoActivo: [],
-            comments: []
+            comments: [],
+            favoritos: [],
+            favorite: false
         }
     },
     created() {
@@ -152,6 +154,25 @@ Vue.createApp({
             firebase.database().ref().update(update);
             document.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
         },
+        favGame: function (juego, favoritos) {
+            let alreadyFav = false;
+            if (favoritos) {
+                Object.entries(favoritos).forEach(entry => {
+                    if (entry[1] == this.usuario.uid) {
+                        firebase.database().ref(`Juegos/${juego}/favoritos/${entry[0]}`).remove();
+                        alreadyFav = true;
+                        this.favorite = false;
+                    }
+                });
+            }
+            if (!alreadyFav) {
+                let newFavKey = firebase.database().ref(`Juegos/${juego}/favoritos`).push().key;
+                var update = {}
+                update[`Juegos/${juego}/favoritos/${newFavKey}`] = this.usuario.uid;
+                firebase.database().ref().update(update);
+                this.favorite = true;
+            };
+        },
         returnLength: function (category) {
             return `--total: ${this.juegos.filter(juego => juego[1].categorias.includes(category)).length}`;
         },
@@ -268,13 +289,20 @@ Vue.createApp({
                 document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
             }
         },
-        generateComments(comentarios) {
+        generateComments(comentarios, favoritos) {
             this.comments = [];
             if (comentarios) {
                 let comms = Object.values(comentarios);
                 if (comms.length > 0) {
                     comms.forEach(comentario => this.comments = [...this.comments, comentario]);
                 }
+            }
+            if (favoritos) {
+                Object.entries(favoritos).forEach(entry => {
+                    if (entry[1] == this.usuario.uid) {
+                        this.favorite = true;
+                    }
+                });
             }
         }
     },
@@ -310,6 +338,16 @@ Vue.createApp({
             else {
                 this.juegosFiltrados = this.juegos.filter(juego => juego[1].nombre.toUpperCase().includes(this.busqueda.toUpperCase()));
             };
-        }
+        },
+        // checkFavs: function() {
+        //     if (this.juegoActivo.length > 0){
+        //         firebase.database().ref(`Juegos/${this.juegoActivo[0]}`).on('child_added', (snapshot) => {
+        //             console.log(snapshot)
+        //         });
+        //         firebase.database().ref(`Juegos/${this.juegoActivo[0]}`).on('child_removed', (snapshot) => {
+        //             console.log(snapshot)
+        //         })
+        //     }
+        // }
     }
 }).mount('#app');
