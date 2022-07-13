@@ -18,20 +18,21 @@
         <header>
             <nav class="navbar">
                 <a href="#" id="home-icon-container"
-                    v-on:click="() => {title='Home';juegoActivo=[];restoreHeader(); favorite = false; deseado = false}"><span
+                    v-on:click="() => {title='Home';juegoActivo=[];restoreHeader(); favorite = false; deseado = false; like = false; dislike = false}"><span
                         class="material-icons" id="home-icon">home</span></a>
                 <img id="logo" src="assets/img/favicon.png" alt="scrinium_logo">
                 <ul class="nav-menu">
-                    <!-- se puede cambiar, lo agregué acá mientras trabajo para ir y venir: -->
                     <li class="nav-item" v-show="!usuario">
                         <a href="#" v-on:click="() => {burgerToggle();title = 'Login'; destroyHeader()}"
                             class="nav-link">Login</a>
                     </li>
                     <li class="nav-item" v-show="usuario">
-                        <a href="#" v-on:click="() => {burgerToggle();title = 'Profile'; destroyHeader()}" class="nav-link">Perfil</a>
+                        <a href="#" v-on:click="() => {burgerToggle();title = 'Profile'; destroyHeader()}"
+                            class="nav-link">Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" v-on:click="() => {burgerToggle();title = 'Game Request'}" class="nav-link">Pedido de Juego</a>
+                        <a href="#" v-on:click="() => {burgerToggle();title = 'Game Request'}" class="nav-link">Pedido
+                            de Juego</a>
                     </li>
                 </ul>
                 <div class="hamburger" v-on:click="burgerToggle">
@@ -46,7 +47,6 @@
             <!-- inicio -->
             <section v-show="title == 'Home'" id="home">
                 <div class="inicioDesktop">
-                    <!-- colocar navbar flotante acá en desktop-->
                     <img src="./assets/img/favicon.png" alt="logoDesktop">
                     <span>
                         <p>¡Descubre! ¡Prueba! ¡Opina! ¡Comparte! Haz valer tu opinion y sabiduria en Scrinium</p>
@@ -80,12 +80,12 @@
                     </div>
                 </section>
 
-                <!-- {{autoSearch}}
+                {{autoSearch}}
                 {{loadAllGames}}
                 {{checkLogin}}
                 {{checkFavs}}
                 {{checkDes}}
-                <div id="results-container" v-show="busqueda != ''">
+                <div id="results-container sliderEsconderDesktop" v-show="busqueda != ''">
                     <h2>Resultados de "{{busqueda}}"</h2>
                     <div class="item" v-for="juego in juegosFiltrados">
                         <a class="card-link" href="#"
@@ -99,7 +99,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="carousel" v-for="categoria in categorias.sort()" v-show="busqueda == ''">
+                <div class="carousel sliderEsconderDesktop" v-for="categoria in categorias.sort()"
+                    v-show="busqueda == ''">
                     <h2>{{categoria}}</h2>
                     <ul class="hs full" v-bind:style="returnLength(categoria)">
                         <li class="item"
@@ -115,417 +116,42 @@
                             </a>
                         </li>
                     </ul>
-                </div> -->
-
-                <h2 id="titCategorias">Categorias</h2>
-                <div class="carousel sliderEsconderDesktop">
-                    <h2>Acción</h2>
-                    <ul class="hs full">
-                        <li class="item">
-                            <a href="#" v-on:click="() => title='Juego'">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    <div class="card-text">
-                                        <p>Monster Hunter Rise</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <div class="card">
-                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                <div class="card-text">
-                                    <p>Monster Hunter Rise</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="card">
-                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                <div class="card-text">
-                                    <p>Monster Hunter Rise</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="card">
-                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                <div class="card-text">
-                                    <p>Monster Hunter Rise</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="card">
-                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                <div class="card-text">
-                                    <p>Monster Hunter Rise</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="card">
-                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                <div class="card-text">
-                                    <p>Monster Hunter Rise</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
-                <section class="cardsConJuegosDesktop">
-                    <h2>Acción</h2>
-                    <div class="contCardsConJuegos">
 
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
+                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(0,10)">
+                    <h2>{{categoria}}</h2>
+                    <div class="contCardsConJuegos">
+                        <div class="card"
+                            v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
+                            <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
                             <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
+                                <p>{{juego[1].nombre}}</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- otro carrusel más para ejemplificar lo de los géneros en el costado derecho: -->
-
-                <div class="carruselGnrosDerecha sliderEsconderDesktop">
-                    <div class="carousel" id="carruselIzqGnros">
-                        <h2>Aventura</h2>
-                        <ul class="hs full">
-                            <li class="item">
-                                <a href="#" v-on:click="() => title='Juego'">
-                                    <div class="card">
-                                        <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                        <div class="card-text">
-                                            <p>Monster Hunter Rise</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    <div class="card-text">
-                                        <p>Monster Hunter Rise</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    <div class="card-text">
-                                        <p>Monster Hunter Rise</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    <div class="card-text">
-                                        <p>Monster Hunter Rise</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    <div class="card-text">
-                                        <p>Monster Hunter Rise</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    <div class="card-text">
-                                        <p>Monster Hunter Rise</p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <section class="sectionGeneros">
-                        <h2>TODOS LOS GÉNEROS</h2>
-                        <div class="carrGnros">
-                            <div class="contTodosGnros">
-                                <a href="">Accion ·</a>
-                                <a href="">Aventura ·</a>
-                                <a href="">RPG ·</a>
-                                <a href="">JRPG ·</a>
-                                <a href="">Exploracion ·</a>
-                                <a href="">Mundo abierto ·</a>
-                                <a href="">Dificultad Extrema ·</a>
-                                <a href="">Terror ·</a>
-                                <a href="">Tactico ·</a>
-                                <p>ETC</p>
-                            </div>
+                <section class="sectionGeneros">
+                    <h2>TODOS LOS GÉNEROS</h2>
+                    <div class="carrGnros">
+                        <div class="contTodosGnros">
+                            <a href="#" v-for="categoria in categorias.sort()">{{categoria}} . </a>
                         </div>
-                    </section>
-                </div>
-                <div class="cardsConJuegosDesktop">
-                    <h2>Aventura</h2>
+                    </div>
+                </section>
+
+                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(10,20)">
+                    <h2>{{categoria}}</h2>
                     <div class="contCardsConJuegos">
-
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
+                        <div class="card"
+                            v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
+                            <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
                             <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
+                                <p>{{juego[1].nombre}}</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
                 <section class="sobreNosotros">
                     <div class="contOurInfo" id="cont1">
@@ -544,200 +170,19 @@
                         </div>
                     </div>
                 </section>
-
-                <div class="carousel sliderEsconderDesktop">
-                    <h2>Mundo abierto</h2>
-                    <ul class="hs full">
-                        <li class="item">
-                            <a href="#" v-on:click="() => title='Juego'">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    <div class="card-text">
-                                        <p>Monster Hunter Rise</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <div class="card">
-                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                <div class="card-text">
-                                    <p>Monster Hunter Rise</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="card">
-                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                <div class="card-text">
-                                    <p>Monster Hunter Rise</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="card">
-                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                <div class="card-text">
-                                    <p>Monster Hunter Rise</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="card">
-                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                <div class="card-text">
-                                    <p>Monster Hunter Rise</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="card">
-                                <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                <div class="card-text">
-                                    <p>Monster Hunter Rise</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="cardsConJuegosDesktop">
-                    <h2>Mundo abierto</h2>
+                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(20)">
+                    <h2>{{categoria}}</h2>
                     <div class="contCardsConJuegos">
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
+                        <div class="card"
+                            v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
+                            <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
                             <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                            <div class="card-text">
-                                <p>Monster Hunter Rise</p>
+                                <p>{{juego[1].nombre}}</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
+                
             </section>
 
             <!-- login -->
@@ -827,51 +272,6 @@
                         </ul>
                     </div>
                 </div>
-
-                <!-- <h3>Logros</h3>
-                <div class="logros">
-                    <div class="carousel carruselLogros">
-                        <ul class="hs full logrosSlider">
-                            <li class="item">
-                                <a href="#" v-on:click="() => title='Juego'">
-                                    <div class="card">
-                                        <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="card">
-                                    <img src="assets/img/monster_hunter_test.jpg" alt="monster-hunter">
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <h2>Reseñas destacables</h2>
-                <div class="reseñasDest">
-
-                </div> -->
             </section>
 
             <!-- registro de usuario -->
@@ -990,9 +390,14 @@
 
                 <span id="resPromedio">
                     <p>Reseñas promedio</p>
-                    <p v-if="returnBool(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)">Al {{handleVotes(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)}}% le gusta.</p>
-                    <p v-if="(!returnBool(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)) && (!returnEqualBool(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos))">Al {{handleVotes(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)}}% no le gusta.</p>
-                    <p v-if="returnEqualBool(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)">El juego está igualado en votos.</p>
+                    <p v-if="returnBool(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)">Al
+                        {{handleVotes(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)}}% le gusta.</p>
+                    <p
+                        v-if="(!returnBool(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)) && (!returnEqualBool(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos))">
+                        Al {{handleVotes(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)}}% no le gusta.
+                    </p>
+                    <p v-if="returnEqualBool(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)">El juego
+                        está igualado en votos.</p>
                 </span>
 
                 <div class="descripcionJuego">
@@ -1102,10 +507,10 @@
         </footer>
 
     </div>
-    <!-- <script src="/__/firebase/9.8.3/firebase-app-compat.js"></script>
+    <script src="/__/firebase/9.8.3/firebase-app-compat.js"></script>
     <script src="/__/firebase/9.8.3/firebase-database-compat.js"></script>
     <script src="/__/firebase/9.8.3/firebase-auth-compat.js"></script>
-    <script src="/__/firebase/init.js"></script> -->
+    <script src="/__/firebase/init.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="assets/scripts/main.js"></script>

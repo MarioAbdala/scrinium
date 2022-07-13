@@ -272,6 +272,8 @@ Vue.createApp({
         restoreHeader: function () {
             if (window.innerWidth < 768) {
                 document.documentElement.style.overflow = "scroll";
+                window.removeEventListener("scroll", this.gameScroll);
+                window.addEventListener("scroll", this.homeScroll);
                 window.scrollTo(0, 0);
                 document.getElementById("logo").style.display = "block";
                 document.getElementById("logo").style.transform = "none";
@@ -282,19 +284,18 @@ Vue.createApp({
                 document.getElementsByTagName('header')[0].style.background = 'var(--main-purple)';
                 document.getElementsByTagName('header')[0].style.background = 'radial-gradient(circle, var(--main-purple) 28%, var(--main-pink) 100%)';
                 document.getElementsByTagName("header")[0].style.padding = "10px 10px 100px 10px";
-                window.removeEventListener("scroll", this.gameScroll);
-                window.addEventListener("scroll", this.homeScroll);
             }
         },
         removeHeader: function (imagen) {
             if (window.innerWidth < 768) {
+                document.documentElement.style.overflow = "scroll";
+                window.removeEventListener("scroll", this.homeScroll);
+                window.addEventListener("scroll", this.gameScroll);
                 window.scrollTo(0, 0);
                 document.getElementById("logo").style.display = "none";
                 document.getElementsByTagName('header')[0].style.backgroundImage = `url(${imagen})`;
                 document.getElementsByTagName("header")[0].style.padding = "10px 10px 135px 10px";
                 document.getElementsByTagName("main")[0].style.marginTop = "200px";
-                window.removeEventListener("scroll", this.homeScroll);
-                window.addEventListener("scroll", this.gameScroll);
             }
         },
         destroyHeader: function () {
@@ -493,14 +494,16 @@ Vue.createApp({
         checkFavs: function () {
             if (this.juegos.length > 0) {
                 this.juegos.forEach(juego => {
-                    firebase.database().ref(`Juegos/${juego[0]}/favoritos`).on('child_added', () => {
-                        if (!this.favoritos.includes(juego[0])) {
-                            this.favoritos = [...this.favoritos, juego[0]]
+                    firebase.database().ref(`Juegos/${juego[0]}/favoritos`).on('child_added', (snapshot) => {
+                        if (snapshot.val() == this.usuario.uid) {
+                            if (!this.favoritos.includes(juego[0])) {
+                                this.favoritos = [...this.favoritos, juego[0]]
+                            }
                         }
                     })
                     firebase.database().ref(`Juegos/${juego[0]}/favoritos`).on('child_removed', (snapshot) => {
                         if (snapshot.val() == this.usuario.uid) {
-                            console.log("mismo usuario")
+                            // console.log("mismo usuario")
                             if (this.favoritos.includes(juego[0])) {
                                 this.favoritos = this.favoritos.filter(game => game != juego[0]);
                             }
@@ -513,14 +516,16 @@ Vue.createApp({
         checkDes: function () {
             if (this.juegos.length > 0) {
                 this.juegos.forEach(juego => {
-                    firebase.database().ref(`Juegos/${juego[0]}/deseados`).on('child_added', () => {
-                        if (!this.deseados.includes(juego[0])) {
-                            this.deseados = [...this.deseados, juego[0]]
+                    firebase.database().ref(`Juegos/${juego[0]}/deseados`).on('child_added', (snapshot) => {
+                        if (snapshot.val() == this.usuario.uid){
+                            if (!this.deseados.includes(juego[0])) {
+                                this.deseados = [...this.deseados, juego[0]]
+                            }
                         }
                     })
                     firebase.database().ref(`Juegos/${juego[0]}/deseados`).on('child_removed', (snapshot) => {
                         if (snapshot.val() == this.usuario.uid) {
-                            console.log("mismo usuario")
+                            // console.log("mismo usuario")
                             if (this.deseados.includes(juego[0])) {
                                 this.deseados = this.deseados.filter(game => game != juego[0]);
                             }
