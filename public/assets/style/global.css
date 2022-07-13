@@ -896,7 +896,7 @@ section {
 }
 
 #commentsBtn1 {
-    background-color: var(--main-grey);
+    background-color: rgb(25, 99, 25);
 }
 
 #commentsBtn2 {
