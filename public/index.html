@@ -132,7 +132,7 @@
                     <div class="contCardsConJuegos">
                         <div class="card"
                             v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
-                            <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
+                            <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen" v-bind:alt="juego[1].nombre">
                             <div class="card-text">
                                 <p>{{juego[1].nombre}}</p>
                             </div>
@@ -147,7 +147,7 @@
                     <div class="contCardsConJuegos">
                         <div class="card"
                             v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
-                            <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
+                            <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen" v-bind:alt="juego[1].nombre">
                             <div class="card-text">
                                 <p>{{juego[1].nombre}}</p>
                             </div>
@@ -177,7 +177,7 @@
                     <div class="contCardsConJuegos">
                         <div class="card"
                             v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
-                            <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
+                            <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen" v-bind:alt="juego[1].nombre">
                             <div class="card-text">
                                 <p>{{juego[1].nombre}}</p>
                             </div>
