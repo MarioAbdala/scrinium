@@ -430,7 +430,7 @@ Vue.createApp({
             };
             return (pos > neg);
         },
-        returnEqualBool: function (votosPositivos, votosNegativos){
+        returnEqualBool: function (votosPositivos, votosNegativos) {
             let pos = 0;
             let neg = 0;
             if (votosPositivos) {
@@ -441,7 +441,7 @@ Vue.createApp({
             };
             return (pos == neg);
         },
-        handleVotes: function (votosPositivos, votosNegativos){
+        handleVotes: function (votosPositivos, votosNegativos) {
             let pos = 0;
             let neg = 0;
             if (votosPositivos) {
@@ -450,11 +450,11 @@ Vue.createApp({
             if (votosNegativos) {
                 neg = Object.values(votosNegativos).length;
             };
-            if (pos>neg){
-                return pos/(pos + neg)*100;
+            if (pos > neg) {
+                return pos / (pos + neg) * 100;
             }
-            else{
-                return neg/(pos + neg)*100;
+            else {
+                return neg / (pos + neg) * 100;
             }
         }
     },
@@ -517,7 +517,7 @@ Vue.createApp({
             if (this.juegos.length > 0) {
                 this.juegos.forEach(juego => {
                     firebase.database().ref(`Juegos/${juego[0]}/deseados`).on('child_added', (snapshot) => {
-                        if (snapshot.val() == this.usuario.uid){
+                        if (snapshot.val() == this.usuario.uid) {
                             if (!this.deseados.includes(juego[0])) {
                                 this.deseados = [...this.deseados, juego[0]]
                             }

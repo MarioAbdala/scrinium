@@ -459,7 +459,7 @@
                         de lista de deseados</button>
                 </div>
 
-                <div class="contJuegosRel">
+                <div class="contJuegosRel" v-if="juegoActivo[1].relacionados && juegoActivo[1].relacionados.length > 0">
                     <h2>Juegos Relacionados</h2>
                     <div class="carousel juegosRel">
                         <ul class="hs full hsCarJuegosRel"
