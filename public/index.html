@@ -447,15 +447,15 @@
                 </div>
 
                 <div class="contenedorBtnesComments">
-                    <button v-on:click="meGusta(juegoActivo[0])">Me gusta</button>
-                    <button v-on:click="noMeGusta(juegoActivo[0])">No me gusta</button>
-                    <button v-show="!favorite" v-on:click="favGame(juegoActivo[0])">Añadir a favoritos</button>
+                    <button v-on:click="meGusta(juegoActivo[0])" id="commentsBtn1">Me gusta</button>
+                    <button v-on:click="noMeGusta(juegoActivo[0])" id="commentsBtn2">No me gusta</button>
+                    <button v-show="!favorite" v-on:click="favGame(juegoActivo[0])" id="commentsBtn3">Añadir a favoritos</button>
                     <button v-show="favorite"
-                        v-on:click="removeFavGame(juegoActivo[0], juegoActivo[1].favoritos)">Quitar de
+                        v-on:click="removeFavGame(juegoActivo[0], juegoActivo[1].favoritos)" id="commentsBtn4">Quitar de
                         favoritos</button>
-                    <button v-show="!deseado" v-on:click="desiredGame(juegoActivo[0])">Añadir a lista de
+                    <button v-show="!deseado" v-on:click="desiredGame(juegoActivo[0])" id="commentsBtn5">Añadir a lista de
                         deseados</button>
-                    <button v-show="deseado" v-on:click="removeDesGame(juegoActivo[0], juegoActivo[1].deseados)">Quitar
+                    <button v-show="deseado" v-on:click="removeDesGame(juegoActivo[0], juegoActivo[1].deseados)" id="commentsBtn6">Quitar
                         de lista de deseados</button>
                 </div>
 
