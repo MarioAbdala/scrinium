@@ -1214,7 +1214,7 @@ footer {
         overflow-y: hidden;
     }
     .sectionGeneros {
-        width: 25%;
+        width: 95%;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -1233,6 +1233,7 @@ footer {
     .contTodosGnros {
         background-color: var(--main-black);
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         border-radius: 25px;
         padding: .6rem;

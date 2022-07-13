@@ -118,6 +118,15 @@
                     </ul>
                 </div>
 
+                <section class="sectionGeneros">
+                    <h2>TODOS LOS GÉNEROS</h2>
+                    <div class="carrGnros">
+                        <div class="contTodosGnros">
+                            <a href="#" v-for="categoria in categorias.sort()">{{categoria}} . </a>
+                        </div>
+                    </div>
+                </section>
+
                 <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(0,10)">
                     <h2>{{categoria}}</h2>
                     <div class="contCardsConJuegos">
@@ -131,14 +140,7 @@
                     </div>
                 </section>
 
-                <section class="sectionGeneros">
-                    <h2>TODOS LOS GÉNEROS</h2>
-                    <div class="carrGnros">
-                        <div class="contTodosGnros">
-                            <a href="#" v-for="categoria in categorias.sort()">{{categoria}} . </a>
-                        </div>
-                    </div>
-                </section>
+                
 
                 <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(10,20)">
                     <h2>{{categoria}}</h2>
@@ -226,7 +228,6 @@
             </section>
 
             <!-- sección de usuario -->
-
             <section v-show="title=='Profile'" id="profile">
                 <div class="infoUsuario">
                     <p>
