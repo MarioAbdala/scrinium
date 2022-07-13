@@ -879,10 +879,42 @@ section {
 }
 
 .contenedorBtnesComments {
-    width: 70%;
+    width: 90%;
     height: fit-content;
     display: flex;
     justify-content: space-between;
+}
+
+.contenedorBtnesComments button {
+    font-size: 1.2em;
+    border-radius: 20px;
+    margin: 0rem .5rem;
+    padding: 4px;
+    color: white;
+}
+
+.contenedorBtnesComments:nth-child(1) {
+    background-color: var(--main-grey);
+}
+
+.contenedorBtnesComments:nth-child(2) {
+    background-color: rgb(110, 15, 15);
+}
+
+.contenedorBtnesComments:nth-child(3) {
+    background-image: linear-gradient(to right, #ff4d00, #ff5700, #ff6000, #ff6800, #ff7000, #ff7f00, #ff8e00, #ff9c00, #ffb400, #ffcd00, #ffe600, #faff00);
+}
+
+.contenedorBtnesComments:nth-child(4) {
+    background-color: rgba(221, 221, 13, 0.651);
+}
+
+.contenedorBtnesComments:nth-child(5) {
+    background-image: linear-gradient(to right, #0c24fa, #0039fc, #0049fd, #0057fc, #0063fb, #006ffc, #007afd, #0084fc, #0091fd, #009cfc, #00a7fa, #0db1f6);
+}
+
+.contenedorBtnesComments:nth-child(6) {
+    background-color: rgba(0, 0, 255, 0.623);
 }
 
 .reseñas {
