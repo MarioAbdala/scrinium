@@ -1185,6 +1185,21 @@ footer {
         justify-content: center;
         align-items: center;
     }
+    .top-game{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 25px;
+    }
+    .side-top-game{
+        border-radius: 15px;
+    }
+    .side-top-game-top-name{
+        object-position: top;
+    }
+    .side-top-game-bottom-name{
+        object-position: bottom;
+    }
     .juegTop {
         height: 100%;
         display: flex;
