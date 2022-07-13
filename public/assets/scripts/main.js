@@ -451,10 +451,10 @@ Vue.createApp({
                 neg = Object.values(votosNegativos).length;
             };
             if (pos > neg) {
-                return pos / (pos + neg) * 100;
+                return Math.round(pos / (pos + neg) * 100 * 100) / 100;
             }
             else {
-                return neg / (pos + neg) * 100;
+                return Math.round(neg / (pos + neg) * 100 * 100) / 100;
             }
         }
     },
