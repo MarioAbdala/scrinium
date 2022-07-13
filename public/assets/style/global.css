@@ -887,6 +887,7 @@ section {
 
 .contenedorBtnesComments button {
     font-size: 1em;
+    text-shadow: 0px 0px 3px black;
     border-radius: 20px;
     border-style: none;
     margin: 0rem .5rem;
