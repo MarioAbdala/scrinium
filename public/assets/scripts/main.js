@@ -15,7 +15,9 @@ Vue.createApp({
             favoritos: [],
             deseados: [],
             favorite: false,
-            deseado: false
+            deseado: false,
+            like: false,
+            dislike: false
         }
     },
     created() {
@@ -191,7 +193,7 @@ Vue.createApp({
                 });
             };
         },
-        loadCategory: function (categoria){
+        loadCategory: function (categoria) {
             this.title = "Home";
             this.juegoActivo = [];
             this.busqueda = categoria;
@@ -313,7 +315,7 @@ Vue.createApp({
                 document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
             }
         },
-        generateContent(comentarios, favoritos, deseados) {
+        generateContent(comentarios, favoritos, deseados, votosPositivos, votosNegativos) {
             this.comments = [];
             if (comentarios) {
                 let comms = Object.values(comentarios);
@@ -335,6 +337,124 @@ Vue.createApp({
                     }
                 });
             };
+            if (votosPositivos) {
+                Object.entries(votosPositivos).forEach(entry => {
+                    if (entry[1] == this.usuario.uid) {
+                        this.like = true;
+                    }
+                });
+            };
+            if (votosNegativos) {
+                Object.entries(votosNegativos).forEach(entry => {
+                    if (entry[1] == this.usuario.uid) {
+                        this.dislike = true;
+                    }
+                });
+            };
+        },
+        meGusta: function (juego) {
+            this.juegos.forEach(game => {
+                if (game[1].votosNegativos) {
+                    Object.entries(game[1].votosNegativos).forEach(entry => {
+                        if (entry[1] == this.usuario.uid) {
+                            firebase.database().ref(`Juegos/${juego}/votosNegativos/${entry[0]}`).remove();
+                            this.dislike = false;
+                            console.log("dislike destruido")
+                        }
+                    });
+                };
+            });
+            if (this.like) {
+                this.juegos.forEach(game => {
+                    if (game[1].votosPositivos) {
+                        Object.entries(game[1].votosPositivos).forEach(entry => {
+                            if (entry[1] == this.usuario.uid) {
+                                firebase.database().ref(`Juegos/${juego}/votosPositivos/${entry[0]}`).remove();
+                                this.like = false;
+                                console.log("like destruido")
+                            }
+                        });
+                    };
+                });
+            }
+            else {
+                let newLikeKey = firebase.database().ref(`Juegos/${juego}/votosPositivos`).push().key;
+                var update = {}
+                update[`Juegos/${juego}/votosPositivos/${newLikeKey}`] = this.usuario.uid;
+                firebase.database().ref().update(update);
+                this.like = true;
+            }
+        },
+        noMeGusta: function (juego) {
+            this.juegos.forEach(game => {
+                if (game[1].votosPositivos) {
+                    Object.entries(game[1].votosPositivos).forEach(entry => {
+                        if (entry[1] == this.usuario.uid) {
+                            firebase.database().ref(`Juegos/${juego}/votosPositivos/${entry[0]}`).remove();
+                            this.like = false;
+                            console.log("like destruido")
+                        }
+                    });
+                };
+            });
+            if (this.dislike) {
+                this.juegos.forEach(game => {
+                    if (game[1].votosNegativos) {
+                        Object.entries(game[1].votosNegativos).forEach(entry => {
+                            if (entry[1] == this.usuario.uid) {
+                                firebase.database().ref(`Juegos/${juego}/votosNegativos/${entry[0]}`).remove();
+                                this.dislike = false;
+                                console.log("dislike destruido")
+                            }
+                        });
+                    };
+                });
+            }
+            else {
+                let newDislikeKey = firebase.database().ref(`Juegos/${juego}/votosNegativos`).push().key;
+                var update = {}
+                update[`Juegos/${juego}/votosNegativos/${newDislikeKey}`] = this.usuario.uid;
+                firebase.database().ref().update(update);
+                this.dislike = true;
+            }
+        },
+        returnBool: function (votosPositivos, votosNegativos) {
+            let pos = 0;
+            let neg = 0;
+            if (votosPositivos) {
+                pos = Object.values(votosPositivos).length;
+            };
+            if (votosNegativos) {
+                neg = Object.values(votosNegativos).length;
+            };
+            return (pos > neg);
+        },
+        returnEqualBool: function (votosPositivos, votosNegativos){
+            let pos = 0;
+            let neg = 0;
+            if (votosPositivos) {
+                pos = Object.values(votosPositivos).length;
+            };
+            if (votosNegativos) {
+                neg = Object.values(votosNegativos).length;
+            };
+            return (pos == neg);
+        },
+        handleVotes: function (votosPositivos, votosNegativos){
+            let pos = 0;
+            let neg = 0;
+            if (votosPositivos) {
+                pos = Object.values(votosPositivos).length;
+            };
+            if (votosNegativos) {
+                neg = Object.values(votosNegativos).length;
+            };
+            if (pos>neg){
+                return pos/(pos + neg)*100;
+            }
+            else{
+                return neg/(pos + neg)*100;
+            }
         }
     },
     computed: {
@@ -371,17 +491,17 @@ Vue.createApp({
             };
         },
         checkFavs: function () {
-            if (this.juegos.length > 0){
+            if (this.juegos.length > 0) {
                 this.juegos.forEach(juego => {
                     firebase.database().ref(`Juegos/${juego[0]}/favoritos`).on('child_added', () => {
-                        if (!this.favoritos.includes(juego[0])){
+                        if (!this.favoritos.includes(juego[0])) {
                             this.favoritos = [...this.favoritos, juego[0]]
                         }
                     })
                     firebase.database().ref(`Juegos/${juego[0]}/favoritos`).on('child_removed', (snapshot) => {
-                        if (snapshot.val() == this.usuario.uid){
+                        if (snapshot.val() == this.usuario.uid) {
                             console.log("mismo usuario")
-                            if (this.favoritos.includes(juego[0])){
+                            if (this.favoritos.includes(juego[0])) {
                                 this.favoritos = this.favoritos.filter(game => game != juego[0]);
                             }
                         }
@@ -391,17 +511,17 @@ Vue.createApp({
             }
         },
         checkDes: function () {
-            if (this.juegos.length > 0){
+            if (this.juegos.length > 0) {
                 this.juegos.forEach(juego => {
                     firebase.database().ref(`Juegos/${juego[0]}/deseados`).on('child_added', () => {
-                        if (!this.deseados.includes(juego[0])){
+                        if (!this.deseados.includes(juego[0])) {
                             this.deseados = [...this.deseados, juego[0]]
                         }
                     })
                     firebase.database().ref(`Juegos/${juego[0]}/deseados`).on('child_removed', (snapshot) => {
-                        if (snapshot.val() == this.usuario.uid){
+                        if (snapshot.val() == this.usuario.uid) {
                             console.log("mismo usuario")
-                            if (this.deseados.includes(juego[0])){
+                            if (this.deseados.includes(juego[0])) {
                                 this.deseados = this.deseados.filter(game => game != juego[0]);
                             }
                         }

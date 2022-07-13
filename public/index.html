@@ -89,7 +89,7 @@
                     <h2>Resultados de "{{busqueda}}"</h2>
                     <div class="item" v-for="juego in juegosFiltrados">
                         <a class="card-link" href="#"
-                            v-on:click="() => {title='Juego'; juegoActivo = juego; generateContent(juego[1].comentarios, juego[1].favoritos, juego[1].deseados) ;removeHeader(juego[1].imagen)}">
+                            v-on:click="() => {title='Juego'; juegoActivo = juego; generateContent(juego[1].comentarios, juego[1].favoritos, juego[1].deseados, juego[1].votosPositivos, juego[1].votosNegativos) ;removeHeader(juego[1].imagen)}">
                             <div class="card">
                                 <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
                                 <div v-bind:class="returnClass(juego[1].nombre)">
@@ -105,7 +105,7 @@
                         <li class="item"
                             v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
                             <a class="card-link" href="#"
-                                v-on:click="() => {title='Juego'; juegoActivo = juego; generateContent(juego[1].comentarios, juego[1].favoritos, juego[1].deseados) ;removeHeader(juego[1].imagen)}">
+                                v-on:click="() => {title='Juego'; juegoActivo = juego; generateContent(juego[1].comentarios, juego[1].favoritos, juego[1].deseados, juego[1].votosPositivos, juego[1].votosNegativos) ;removeHeader(juego[1].imagen)}">
                                 <div class="card">
                                     <img v-bind:src="juego[1].imagen" v-bind:alt="juego[1].nombre">
                                     <div v-bind:class="returnClass(juego[1].nombre)">
@@ -990,6 +990,9 @@
 
                 <span id="resPromedio">
                     <p>Reseñas promedio</p>
+                    <p v-if="returnBool(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)">Al {{handleVotes(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)}}% le gusta.</p>
+                    <p v-if="(!returnBool(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)) && (!returnEqualBool(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos))">Al {{handleVotes(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)}}% no le gusta.</p>
+                    <p v-if="returnEqualBool(juegoActivo[1].votosPositivos, juegoActivo[1].votosNegativos)">El juego está igualado en votos.</p>
                 </span>
 
                 <div class="descripcionJuego">
@@ -1038,8 +1041,8 @@
                 </div>
 
                 <div>
-                    <button>Me gusta</button>
-                    <button>No me gusta</button>
+                    <button v-on:click="meGusta(juegoActivo[0])">Me gusta</button>
+                    <button v-on:click="noMeGusta(juegoActivo[0])">No me gusta</button>
                     <button v-show="!favorite" v-on:click="favGame(juegoActivo[0])">Añadir a favoritos</button>
                     <button v-show="favorite"
                         v-on:click="removeFavGame(juegoActivo[0], juegoActivo[1].favoritos)">Quitar de
