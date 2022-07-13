@@ -552,10 +552,15 @@ section {
     color: black;
 }
 
+.userCarousel{
+    padding-top: 1rem;
+}
+
 .juegosFavs {
     background-image: linear-gradient(to right, #ff4d00, #ff5700, #ff6000, #ff6800, #ff7000, #ff7f00, #ff8e00, #ff9c00, #ffb400, #ffcd00, #ffe600, #faff00);
     padding: .3rem 0rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .juegosFavs div {
@@ -566,6 +571,7 @@ section {
     background-image: linear-gradient(to right, #ff0000, #ff0045, #ff007b, #ff00b5, #e800ed);
     padding: .3rem 0rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .juegosDeseados div {

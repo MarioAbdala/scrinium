@@ -369,6 +369,46 @@ Vue.createApp({
             else {
                 this.juegosFiltrados = this.juegos.filter(juego => juego[1].nombre.toUpperCase().includes(this.busqueda.toUpperCase()));
             };
+        },
+        checkFavs: function () {
+            if (this.juegos.length > 0){
+                this.juegos.forEach(juego => {
+                    firebase.database().ref(`Juegos/${juego[0]}/favoritos`).on('child_added', () => {
+                        if (!this.favoritos.includes(juego[0])){
+                            this.favoritos = [...this.favoritos, juego[0]]
+                        }
+                    })
+                    firebase.database().ref(`Juegos/${juego[0]}/favoritos`).on('child_removed', (snapshot) => {
+                        if (snapshot.val() == this.usuario.uid){
+                            console.log("mismo usuario")
+                            if (this.favoritos.includes(juego[0])){
+                                this.favoritos = this.favoritos.filter(game => game != juego[0]);
+                            }
+                        }
+                    })
+                })
+
+            }
+        },
+        checkDes: function () {
+            if (this.juegos.length > 0){
+                this.juegos.forEach(juego => {
+                    firebase.database().ref(`Juegos/${juego[0]}/deseados`).on('child_added', () => {
+                        if (!this.deseados.includes(juego[0])){
+                            this.deseados = [...this.deseados, juego[0]]
+                        }
+                    })
+                    firebase.database().ref(`Juegos/${juego[0]}/deseados`).on('child_removed', (snapshot) => {
+                        if (snapshot.val() == this.usuario.uid){
+                            console.log("mismo usuario")
+                            if (this.deseados.includes(juego[0])){
+                                this.deseados = this.deseados.filter(game => game != juego[0]);
+                            }
+                        }
+                    })
+                })
+
+            }
         }
     }
 }).mount('#app');
