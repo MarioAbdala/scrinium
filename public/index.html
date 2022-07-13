@@ -447,8 +447,8 @@
                 </div>
 
                 <div class="contenedorBtnesComments">
-                    <button v-on:click="meGusta(juegoActivo[0])" id="commentsBtn1">Me gusta</button>
-                    <button v-on:click="noMeGusta(juegoActivo[0])" id="commentsBtn2">No me gusta</button>
+                    <button v-show="dislike || !(like || dislike)" v-on:click="meGusta(juegoActivo[0])" id="commentsBtn1">Me gusta</button>
+                    <button v-show="like || !(like || dislike)" v-on:click="noMeGusta(juegoActivo[0])" id="commentsBtn2">No me gusta</button>
                     <button v-show="!favorite" v-on:click="favGame(juegoActivo[0])" id="commentsBtn3">Añadir a favoritos</button>
                     <button v-show="favorite"
                         v-on:click="removeFavGame(juegoActivo[0], juegoActivo[1].favoritos)" id="commentsBtn4">Quitar de
