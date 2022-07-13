@@ -373,6 +373,7 @@ section {
     border-radius: 20px;
     border-style: none;
     color: white;
+    background-image: linear-gradient(to right, #ff0000, #ff0045, #ff007b, #ff00b5, #e800ed);
 }
 
 #quickstart-sign-in {
