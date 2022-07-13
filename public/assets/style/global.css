@@ -1299,8 +1299,8 @@ footer {
     .sobreNosotros {
         margin: 3rem 0rem;
         width: 100%;
-        /* height: 26rem; */
-        height: 15rem;
+        height: 26rem;
+        /* height: 15rem; */
         display: flex;
         flex-direction: row;
         padding: 1rem;
@@ -1312,16 +1312,38 @@ footer {
     }
     #cont1 {
         background-image: linear-gradient(to right, #ff4d00, #ff5700, #ff6000, #ff6800, #ff7000, #ff7f00, #ff8e00, #ff9c00, #ffb400, #ffcd00, #ffe600, #faff00);
-        /* align-self: center; */
     }
+    .sMBM {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sMBM img {
+        width: 8rem;
+        height: auto;
+        align-self: flex-end;
+    }
+
     #cont2 {
         background-image: linear-gradient(to right, #0c24fa, #0039fc, #0049fd, #0057fc, #0063fb, #006ffc, #007afd, #0084fc, #0091fd, #009cfc, #00a7fa, #0db1f6);
         margin: 0rem 1rem;
     }
     #cont3 {
         background-image: linear-gradient(to right, #ff0000, #ff0045, #ff007b, #ff00b5, #e800ed);
-        /* align-self: end; */
     }
+    .castleFlag {
+        align-self: end;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .castleFlag img {
+        width: 8rem;
+        height: auto;
+        align-self: flex-start;
+    }
+
     .ourInfo {
         width: 100%;
         height: 100%;
