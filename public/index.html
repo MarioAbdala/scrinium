@@ -1035,12 +1035,12 @@
                         <label v-show="usuario" for="comment">Dejá un comentario!</label>
                         <div v-show="usuario" id="new-comment">
                             <input type="text" id="comment">
-                            <button v-on:click="addComments(juegoActivo[0])">Enviar</button>
+                            <button v-on:click="addComments(juegoActivo[0])" id="btnCommentUser">Enviar</button>
                         </div>
                     </span>
                 </div>
 
-                <div>
+                <div class="contenedorBtnesComments">
                     <button v-on:click="meGusta(juegoActivo[0])">Me gusta</button>
                     <button v-on:click="noMeGusta(juegoActivo[0])">No me gusta</button>
                     <button v-show="!favorite" v-on:click="favGame(juegoActivo[0])">Añadir a favoritos</button>
