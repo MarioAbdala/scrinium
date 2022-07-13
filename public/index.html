@@ -140,21 +140,6 @@
                     </div>
                 </section>
 
-                
-
-                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(10,20)">
-                    <h2>{{categoria}}</h2>
-                    <div class="contCardsConJuegos">
-                        <div class="card"
-                            v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
-                            <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen" v-bind:alt="juego[1].nombre">
-                            <div class="card-text">
-                                <p>{{juego[1].nombre}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
                 <section class="sobreNosotros">
                     <div class="sMBM">
                         <img src="assets/img/suprMario.png" alt="">
@@ -188,6 +173,20 @@
                         </div>
                     </div>
                 </section>
+
+                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(10,20)">
+                    <h2>{{categoria}}</h2>
+                    <div class="contCardsConJuegos">
+                        <div class="card"
+                            v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
+                            <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen" v-bind:alt="juego[1].nombre">
+                            <div class="card-text">
+                                <p>{{juego[1].nombre}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(20)">
                     <h2>{{categoria}}</h2>
                     <div class="contCardsConJuegos">
