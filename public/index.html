@@ -17,8 +17,11 @@
     <div id="app">
         <header>
             <nav class="navbar">
-                <a href="#" id="home-icon-container"
+                <a href="#" id="home-icon-container" v-if="returnWidth() < 769"
                     v-on:click="() => {title='Home';juegoActivo=[];restoreHeader(); favorite = false; deseado = false; like = false; dislike = false}"><span
+                        class="material-icons" id="home-icon">home</span></a>
+                <a href="#" id="home-icon-container" v-if="returnWidth() >= 769"
+                    v-on:click="() => {title='Home';juegoActivo=[]; favorite = false; deseado = false; like = false; dislike = false}"><span
                         class="material-icons" id="home-icon">home</span></a>
                 <img id="logo" src="assets/img/favicon.png" alt="scrinium_logo">
                 <ul class="nav-menu">
@@ -65,16 +68,19 @@
                         </div>
                         <div class="juegTop">
                             <div id="juegoTop2">
-                                <img src="assets/img/top_1.jpg" alt="top-2" class="top-game side-top-game side-top-game-top-name">
+                                <img src="assets/img/top_1.jpg" alt="top-2"
+                                    class="top-game side-top-game side-top-game-top-name">
                             </div>
                             <div id="juegoTop3">
-                                <img src="assets/img/top_3.jpg" alt="top-3" class="top-game side-top-game side-top-game-bottom-name">
+                                <img src="assets/img/top_3.jpg" alt="top-3"
+                                    class="top-game side-top-game side-top-game-bottom-name">
                             </div>
                             <div id="juegoTop4">
                                 <img src="assets/img/top_4.jpg" alt="top-4" class="top-game side-top-game">
                             </div>
                             <div id="juegoTop5">
-                                <img src="assets/img/top_5.jpg" alt="top-5" class="top-game side-top-game side-top-game-bottom-name">
+                                <img src="assets/img/top_5.jpg" alt="top-5"
+                                    class="top-game side-top-game side-top-game-bottom-name">
                             </div>
                         </div>
                     </div>
@@ -85,7 +91,8 @@
                 {{checkLogin}}
                 {{checkFavs}}
                 {{checkDes}}
-                <div id="results-container" class="sliderEsconderDesktop" v-show="(busqueda != '') && returnWidth() < 769">
+                <div id="results-container" class="sliderEsconderDesktop"
+                    v-show="(busqueda != '') && returnWidth() < 769">
                     <h2>Resultados de "{{busqueda}}"</h2>
                     <div class="item" v-for="juego in juegosFiltrados">
                         <a class="card-link" href="#"
@@ -120,33 +127,45 @@
                 <section class="cardsConJuegosDesktop" v-show="(busqueda != '') && returnWidth() > 769">
                     <h2>Resultados de "{{busqueda}}"</h2>
                     <div class="contCardsConJuegos">
-                        <div class="card"
-                            v-for="juego in juegosFiltrados">
-                            <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen" v-bind:alt="juego[1].nombre">
-                            <div class="card-text">
-                                <p>{{juego[1].nombre}}</p>
-                            </div>
+                        <div class="card" v-for="juego in juegosFiltrados">
+                            <a href="#"
+                                v-on:click="() => {title='Juego'; juegoActivo = juego; generateContent(juego[1].comentarios, juego[1].favoritos, juego[1].deseados, juego[1].votosPositivos, juego[1].votosNegativos)}">
+                                <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen"
+                                    v-bind:alt="juego[1].nombre">
+                                <div class="card-text">
+                                    <p>{{juego[1].nombre}}</p>
+                                </div>
+                            </a>
                         </div>
+
                     </div>
                 </section>
                 <section class="sectionGeneros" v-show="busqueda == ''">
                     <h2>TODOS LAS CATEGORÍAS</h2>
                     <div class="carrGnros">
                         <div class="contTodosGnros">
-                            <a href="#" v-for="categoria in categorias.sort()">{{categoria}} • </a>
+                            <a href="#" v-on:click="loadCategory(categoria)"
+                                v-for="categoria in categorias.sort().slice(0,31)"> {{categoria}} • </a>
+                            <a href="#" v-on:click="loadCategory(categoria)"> {{categorias.sort()[31]}}</a>
                         </div>
                     </div>
                 </section>
 
-                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(0,10)" v-show="busqueda == ''">
+                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(0,10)"
+                    v-show="busqueda == ''">
                     <h2>{{categoria}}</h2>
                     <div class="contCardsConJuegos">
                         <div class="card"
                             v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
-                            <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen" v-bind:alt="juego[1].nombre">
-                            <div class="card-text">
-                                <p>{{juego[1].nombre}}</p>
-                            </div>
+                            <a href="#"
+                                v-on:click="() => {title='Juego'; juegoActivo = juego; generateContent(juego[1].comentarios, juego[1].favoritos, juego[1].deseados, juego[1].votosPositivos, juego[1].votosNegativos)}">
+
+                                <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen"
+                                    v-bind:alt="juego[1].nombre">
+                                <div class="card-text">
+                                    <p>{{juego[1].nombre}}</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -157,7 +176,10 @@
                         <div class="contOurInfo" id="cont1">
                             <div class="ourInfo">
                                 <p>
-                                    Buenas! Les hablamos los creadores de Scrinium, el grupo T3M y queríamos darnos a conocer un poco. En primer lugar, muchas gracias por usar nuestra página, todo el proyecto nació de nuestro amor hacia el medio y aunque no seamos los mejores gamers de todos.
+                                    Buenas! Les hablamos los creadores de Scrinium, el grupo T3M y queríamos darnos a
+                                    conocer un poco. En primer lugar, muchas gracias por usar nuestra página, todo el
+                                    proyecto nació de nuestro amor hacia el medio y aunque no seamos los mejores gamers
+                                    de todos.
                                 </p>
                             </div>
                         </div>
@@ -165,7 +187,9 @@
                     <div class="contOurInfo" id="cont2">
                         <div class="ourInfo">
                             <p>
-                                Sabemos que hay muchísimos juegos en la actualidad, y cada dia nuevos están siendo lanzados, pero a diferencia de dejarnos muchas posibilidades abiertas, esta situación puede terminar causando una saturación de información en las personas.
+                                Sabemos que hay muchísimos juegos en la actualidad, y cada dia nuevos están siendo
+                                lanzados, pero a diferencia de dejarnos muchas posibilidades abiertas, esta situación
+                                puede terminar causando una saturación de información en las personas.
                             </p>
                         </div>
                     </div>
@@ -174,7 +198,9 @@
                         <div class="contOurInfo" id="cont3">
                             <div class="ourInfo">
                                 <p>
-                                    Los invitamos a contactarnos ante cualquier sugerencia o consulta sobre la pagina, somos parte de la comunidad también y queremos mejorar la experiencia tanto como sea posible:
+                                    Los invitamos a contactarnos ante cualquier sugerencia o consulta sobre la pagina,
+                                    somos parte de la comunidad también y queremos mejorar la experiencia tanto como sea
+                                    posible:
                                     Email: scriniumrandom@gmail.com
                                     Ig: @scrinium_Library
                                     Tw: #Scrinium.Polemic
@@ -185,28 +211,39 @@
                     </div>
                 </section>
 
-                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(10,20)" v-show="busqueda == ''">
+                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(10,20)"
+                    v-show="busqueda == ''">
                     <h2>{{categoria}}</h2>
                     <div class="contCardsConJuegos">
                         <div class="card"
                             v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
-                            <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen" v-bind:alt="juego[1].nombre">
-                            <div class="card-text">
-                                <p>{{juego[1].nombre}}</p>
-                            </div>
+                            <a href="#"
+                                v-on:click="() => {title='Juego'; juegoActivo = juego; generateContent(juego[1].comentarios, juego[1].favoritos, juego[1].deseados, juego[1].votosPositivos, juego[1].votosNegativos)}">
+
+                                <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen"
+                                    v-bind:alt="juego[1].nombre">
+                                <div class="card-text">
+                                    <p>{{juego[1].nombre}}</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </section>
 
-                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(20)" v-show="busqueda == ''">
+                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(20)"
+                    v-show="busqueda == ''">
                     <h2>{{categoria}}</h2>
                     <div class="contCardsConJuegos">
                         <div class="card"
                             v-for="juego in juegos.filter(juego => juego[1].categorias.includes(categoria))">
-                            <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen" v-bind:alt="juego[1].nombre">
-                            <div class="card-text">
-                                <p>{{juego[1].nombre}}</p>
-                            </div>
+                            <a href="#"
+                                v-on:click="() => {title='Juego'; juegoActivo = juego; generateContent(juego[1].comentarios, juego[1].favoritos, juego[1].deseados, juego[1].votosPositivos, juego[1].votosNegativos)}">
+                                <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen"
+                                    v-bind:alt="juego[1].nombre">
+                                <div class="card-text">
+                                    <p>{{juego[1].nombre}}</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -351,6 +388,8 @@
 
             <!-- detalle de cada juego -->
             <section v-if="title == 'Juego'" id="gameDetail">
+                <img v-if="returnWidth() >= 769" v-bind:src="juegoActivo[1].banner || juegoActivo[1].imagen" v-bind:alt="juegoActivo[1].nombre"
+                    id="desktopGameBanner">
                 <div class="tiendasDondeEsta">
                     <a v-bind:href="juegoActivo[1].tiendas.steam" v-if="juegoActivo[1].tiendas.steam != ''"
                         target="blank">
@@ -402,6 +441,12 @@
                     </div>
                 </div>
 
+                <div v-if="returnWidth() >= 769" id="desktopCatCont">
+                    <div class="card" v-for="categoria in juegoActivo[1].categorias">
+                        <p>{{categoria}}</p>
+                    </div>
+                </div>
+
                 <div class="carousel" id="generos">
                     <ul class="hs full hsGeneros" v-bind:style="returnArrayLength(juegoActivo[1].categorias)">
                         <li class="item detailItem" v-for="categoria in juegoActivo[1].categorias.sort()">
@@ -446,7 +491,7 @@
                     </div>
                 </div>
 
-                <div class="contReseñas">
+                <div class="contReseñas" v-show="usuario || juegoActivo[1].comentarios">
                     <span>
                         <h2>Reseñas</h2>
                         <div v-for="comentario in comments" class="reseñas">
@@ -471,16 +516,21 @@
                     </span>
                 </div>
 
-                <div class="contenedorBtnesComments">
-                    <button v-show="dislike || !(like || dislike)" v-on:click="meGusta(juegoActivo[0])" id="commentsBtn1">Me gusta</button>
-                    <button v-show="like || !(like || dislike)" v-on:click="noMeGusta(juegoActivo[0])" id="commentsBtn2">No me gusta</button>
-                    <button v-show="!favorite" v-on:click="favGame(juegoActivo[0])" id="commentsBtn3">Añadir a favoritos</button>
-                    <button v-show="favorite"
-                        v-on:click="removeFavGame(juegoActivo[0], juegoActivo[1].favoritos)" id="commentsBtn4">Quitar de
+                <div class="contenedorBtnesComments" v-if="usuario">
+                    <button v-show="dislike || !(like || dislike)" v-on:click="meGusta(juegoActivo[0])"
+                        id="commentsBtn1">Me gusta</button>
+                    <button v-show="like || !(like || dislike)" v-on:click="noMeGusta(juegoActivo[0])"
+                        id="commentsBtn2">No me gusta</button>
+                    <button v-show="!favorite" v-on:click="favGame(juegoActivo[0])" id="commentsBtn3">Añadir a
                         favoritos</button>
-                    <button v-show="!deseado" v-on:click="desiredGame(juegoActivo[0])" id="commentsBtn5">Añadir a lista de
+                    <button v-show="favorite" v-on:click="removeFavGame(juegoActivo[0], juegoActivo[1].favoritos)"
+                        id="commentsBtn4">Quitar de
+                        favoritos</button>
+                    <button v-show="!deseado" v-on:click="desiredGame(juegoActivo[0])" id="commentsBtn5">Añadir a lista
+                        de
                         deseados</button>
-                    <button v-show="deseado" v-on:click="removeDesGame(juegoActivo[0], juegoActivo[1].deseados)" id="commentsBtn6">Quitar
+                    <button v-show="deseado" v-on:click="removeDesGame(juegoActivo[0], juegoActivo[1].deseados)"
+                        id="commentsBtn6">Quitar
                         de lista de deseados</button>
                 </div>
 

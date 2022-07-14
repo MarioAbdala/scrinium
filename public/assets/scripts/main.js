@@ -193,10 +193,17 @@ Vue.createApp({
             };
         },
         loadCategory: function (categoria) {
-            this.title = "Home";
             this.juegoActivo = [];
             this.busqueda = categoria;
-            this.restoreHeader();
+            if (window.innerWidth < 769){
+                console.log("mobile")
+                this.title = "Home";
+                this.restoreHeader();
+            }
+            else{
+                console.log("desktop")
+                window.scrollTo(0,875);
+            };
         },
         returnLength: function (category) {
             return `--total: ${this.juegos.filter(juego => juego[1].categorias.includes(category)).length}`;

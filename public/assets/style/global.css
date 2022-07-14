@@ -258,6 +258,7 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: white;
 }
 
 .card-text p {
@@ -1394,6 +1395,67 @@ footer {
         margin: 1rem;
     }
     /* fin home desktop */
+
+    /* game profile */
+
+    #gameDetail{
+        margin-top: 11.7vh;
+    }
+
+    #desktopGameBanner{
+        width: 100%;
+    }
+
+    .nombreYTrama{
+        margin-top: 1rem;
+    }
+
+    #desktopCatCont{
+        width: 100%;
+        margin-top: 1rem;
+        display: flex;
+    }
+
+    #desktopCatCont>.card{
+        height: auto;
+        text-align: center;
+    }
+
+    #generos{
+        display: none;
+    }
+
+    #resPromedio{
+        width: 30%;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .descripcionJuego ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .descripcionJuego ul li{
+        width: 31.5rem;
+    }
+
+    .reqTecnicos{
+        width: 100%;
+    }
+
+    .contReseñas span{
+        align-items: center;
+    }
+
+    .reseñas{
+        width: 40%;
+    }
+
+    .contJuegosRel{
+        display: none;
+    }
 
     /* footer general */
     footer {
