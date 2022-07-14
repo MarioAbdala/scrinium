@@ -1150,7 +1150,7 @@ footer {
         background: var(--main-black);
     }
     #search-icon{
-        transform: translate(-15px,-32px);
+        transform: translate(-35px,-32px);
     }
 
     /* home desktop */
@@ -1177,6 +1177,10 @@ footer {
         height: 90%;
         padding: .3rem;
         border-radius: 25px;
+        cursor: pointer;
+    }
+    #juegoTop2, #juegoTop3, #juegoTop4, #juegoTop5{
+        cursor: pointer;
     }
     .juegMasVisitas {
         height: 100%;

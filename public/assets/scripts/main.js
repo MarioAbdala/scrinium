@@ -277,6 +277,7 @@ Vue.createApp({
         },
         restoreHeader: function () {
             document.documentElement.style.overflow = "scroll";
+            document.documentElement.style.overflowX = "hidden";
             if (window.innerWidth < 768) {
                 window.removeEventListener("scroll", this.gameScroll);
                 window.addEventListener("scroll", this.homeScroll);
