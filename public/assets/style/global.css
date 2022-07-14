@@ -1465,7 +1465,7 @@ footer {
     }
 
     #new-comment{
-        width: 90%;
+        width: 60%;
         margin-top: .5rem;
     }
 
@@ -1479,6 +1479,10 @@ footer {
         margin: .25rem;
     }
 
+    .contenedorBtnesComments{
+        width: 60%;
+    }
+
     .contenedorBtnesComments>button{
         padding: .75rem;
     }
@@ -1489,7 +1493,7 @@ footer {
     }
 
     .reseñas{
-        width: 30%;
+        width: 20%;
     }
 
     .contJuegosRel{
