@@ -55,7 +55,7 @@
                 <input type="text" name="search" id="search" placeholder="Buscar juegos" v-model="busqueda">
                 <span id="search-icon" class="material-icons">search</span>
 
-                <section class="masPopSemana">
+                <section class="masPopSemana" v-show="busqueda == ''">
                     <h2>Los más populares de la semana</h2>
                     <div id="contMasPopSemana">
                         <div class="contJuegMasVisitas">
@@ -85,7 +85,7 @@
                 {{checkLogin}}
                 {{checkFavs}}
                 {{checkDes}}
-                <div id="results-container sliderEsconderDesktop" v-show="busqueda != ''">
+                <div id="results-container" class="sliderEsconderDesktop" v-show="(busqueda != '') && returnWidth() < 769">
                     <h2>Resultados de "{{busqueda}}"</h2>
                     <div class="item" v-for="juego in juegosFiltrados">
                         <a class="card-link" href="#"
@@ -117,8 +117,19 @@
                         </li>
                     </ul>
                 </div>
-
-                <section class="sectionGeneros">
+                <section class="cardsConJuegosDesktop" v-show="(busqueda != '') && returnWidth() > 769">
+                    <h2>Resultados de "{{busqueda}}"</h2>
+                    <div class="contCardsConJuegos">
+                        <div class="card"
+                            v-for="juego in juegosFiltrados">
+                            <img v-bind:src="juego[1].imagenDesktop || juego[1].imagen" v-bind:alt="juego[1].nombre">
+                            <div class="card-text">
+                                <p>{{juego[1].nombre}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="sectionGeneros" v-show="busqueda == ''">
                     <h2>TODOS LAS CATEGORÍAS</h2>
                     <div class="carrGnros">
                         <div class="contTodosGnros">
@@ -127,7 +138,7 @@
                     </div>
                 </section>
 
-                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(0,10)">
+                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(0,10)" v-show="busqueda == ''">
                     <h2>{{categoria}}</h2>
                     <div class="contCardsConJuegos">
                         <div class="card"
@@ -140,9 +151,9 @@
                     </div>
                 </section>
 
-                <section class="sobreNosotros">
+                <section class="sobreNosotros" v-show="busqueda == ''">
                     <div class="sMBM">
-                        <img src="assets/img/suprMario.png" alt="">
+                        <img src="assets/img/suprMario.png" alt="mario-image">
                         <div class="contOurInfo" id="cont1">
                             <div class="ourInfo">
                                 <p>
@@ -159,7 +170,7 @@
                         </div>
                     </div>
                     <div class="castleFlag">
-                        <img src="assets/img/castleFlag.png" alt="">
+                        <img src="assets/img/castleFlag.png" alt="castle-image">
                         <div class="contOurInfo" id="cont3">
                             <div class="ourInfo">
                                 <p>
@@ -174,7 +185,7 @@
                     </div>
                 </section>
 
-                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(10,20)">
+                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(10,20)" v-show="busqueda == ''">
                     <h2>{{categoria}}</h2>
                     <div class="contCardsConJuegos">
                         <div class="card"
@@ -187,7 +198,7 @@
                     </div>
                 </section>
 
-                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(20)">
+                <section class="cardsConJuegosDesktop" v-for="categoria in categorias.sort().slice(20)" v-show="busqueda == ''">
                     <h2>{{categoria}}</h2>
                     <div class="contCardsConJuegos">
                         <div class="card"
@@ -199,7 +210,6 @@
                         </div>
                     </div>
                 </section>
-                
             </section>
 
             <!-- login -->
