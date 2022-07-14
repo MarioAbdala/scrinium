@@ -1126,6 +1126,7 @@ footer {
     }
     .navbar {
         max-height: 10vh;
+        transform: translateY(-2px);
     }
     header {
         width: 100%;
@@ -1141,11 +1142,11 @@ footer {
     }
     #home-icon{
         align-self: center;
+        font-size: 50px;
     }
     main {
         margin-top: 0px!important;
         display: block!important;
-        /* background: red!important; */
         background: var(--main-black);
     }
     #search-icon{
@@ -1301,7 +1302,6 @@ footer {
         margin: 3rem 0rem;
         width: 100%;
         height: 26rem;
-        /* height: 15rem; */
         display: flex;
         flex-direction: row;
         padding: 1rem;
@@ -1402,6 +1402,10 @@ footer {
         margin-top: 11.7vh;
     }
 
+    #gameDetail button{
+        cursor: pointer;
+    }
+
     #desktopGameBanner{
         width: 100%;
     }
@@ -1419,6 +1423,12 @@ footer {
     #desktopCatCont>.card{
         height: auto;
         text-align: center;
+        background-color: rgba(255, 255, 255, 0.178);
+        border-radius: 0;
+    }
+
+    #gameDetail p{
+        background: none;
     }
 
     #generos{
@@ -1449,13 +1459,69 @@ footer {
         align-items: center;
     }
 
+    .contReseñas>span>label{
+        font-size: 22px;
+        margin-top: 1rem;
+    }
+
+    #new-comment{
+        width: 90%;
+        margin-top: .5rem;
+    }
+
+    #new-comment>input{
+        text-indent: 1rem;
+    }
+
+    .comment-photo{
+        width: 6rem;
+        height: 6rem;
+        margin: .25rem;
+    }
+
+    .contenedorBtnesComments>button{
+        padding: .75rem;
+    }
+
+    #commentsBtn2, #commentsBtn3, #commentsBtn4, #commentsBtn5, #commentsBtn6{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
     .reseñas{
-        width: 40%;
+        width: 30%;
     }
 
     .contJuegosRel{
         display: none;
     }
+
+    /* fin sección juegos */
+
+    /* login */
+
+    #contenedorLogin{
+        margin-top: 13.5vh;
+        width: 50%;
+    }
+
+    .msjeUsuarios{
+        width: auto;
+    }
+
+    .btnesLogin{
+        width: 70%;
+    }
+
+    .btnesLogin button{
+        cursor: pointer;
+    }
+
+    #contenedorGradient{
+        cursor: pointer;
+    }
+
+    /* fin login */
 
     /* footer general */
     footer {

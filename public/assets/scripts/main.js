@@ -276,8 +276,8 @@ Vue.createApp({
             }
         },
         restoreHeader: function () {
+            document.documentElement.style.overflow = "scroll";
             if (window.innerWidth < 768) {
-                document.documentElement.style.overflow = "scroll";
                 window.removeEventListener("scroll", this.gameScroll);
                 window.addEventListener("scroll", this.homeScroll);
                 window.scrollTo(0, 0);
@@ -305,8 +305,8 @@ Vue.createApp({
             }
         },
         destroyHeader: function () {
+            document.documentElement.style.overflow = "hidden";
             if (window.innerWidth < 768) {
-                document.documentElement.style.overflow = "hidden";
                 window.removeEventListener("scroll", this.homeScroll);
                 window.removeEventListener("scroll", this.gameScroll);
                 document.getElementsByTagName("header")[0].style.padding = "5px 10px 5px 10px";
