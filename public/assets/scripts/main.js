@@ -195,14 +195,13 @@ Vue.createApp({
         loadCategory: function (categoria) {
             this.juegoActivo = [];
             this.busqueda = categoria;
-            if (window.innerWidth < 769){
+            if (window.innerWidth < 769) {
                 console.log("mobile")
                 this.title = "Home";
                 this.restoreHeader();
-            }
-            else{
+            } else {
                 console.log("desktop")
-                window.scrollTo(0,875);
+                window.scrollTo(0, 875);
             };
         },
         returnLength: function (category) {
@@ -229,8 +228,7 @@ Vue.createApp({
                         document.getElementById("home-icon-container").style.alignSelf = "center";
                         document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
                         document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
-                    }
-                    else {
+                    } else {
                         document.getElementsByTagName("header")[0].style.padding = "10px 10px 100px 10px";
                         document.getElementsByTagName('header')[0].style.backgroundImage = 'none';
                         document.getElementsByTagName('header')[0].style.background = 'var(--main-purple)';
@@ -262,8 +260,7 @@ Vue.createApp({
                         document.getElementById("home-icon-container").style.alignSelf = "center";
                         document.getElementsByClassName("hamburger")[0].style.alignSelf = "center";
                         document.getElementsByClassName("nav-menu")[0].style.top = "5.7rem";
-                    }
-                    else {
+                    } else {
                         document.getElementsByTagName("header")[0].style.padding = "10px 10px 135px 10px";
                         document.getElementsByTagName("header")[0].style.backgroundImage = `url(${gameImg})`;
                         document.getElementsByTagName("main")[0].style.marginTop = "200px";
@@ -331,7 +328,7 @@ Vue.createApp({
                     comms.forEach(comentario => this.comments = [...this.comments, comentario]);
                 }
             };
-            if (this.usuario){
+            if (this.usuario) {
                 if (favoritos) {
                     Object.entries(favoritos).forEach(entry => {
                         if (entry[1] == this.usuario.uid) {
@@ -384,8 +381,7 @@ Vue.createApp({
                         });
                     };
                 });
-            }
-            else {
+            } else {
                 let newLikeKey = firebase.database().ref(`Juegos/${juego}/votosPositivos`).push().key;
                 var update = {}
                 update[`Juegos/${juego}/votosPositivos/${newLikeKey}`] = this.usuario.uid;
@@ -415,8 +411,7 @@ Vue.createApp({
                         });
                     };
                 });
-            }
-            else {
+            } else {
                 let newDislikeKey = firebase.database().ref(`Juegos/${juego}/votosNegativos`).push().key;
                 var update = {}
                 update[`Juegos/${juego}/votosNegativos/${newDislikeKey}`] = this.usuario.uid;
@@ -457,12 +452,11 @@ Vue.createApp({
             };
             if (pos > neg) {
                 return Math.round(pos / (pos + neg) * 100 * 100) / 100;
-            }
-            else {
+            } else {
                 return Math.round(neg / (pos + neg) * 100 * 100) / 100;
             }
         },
-        returnWidth: function(){
+        returnWidth: function () {
             return window.innerWidth;
         }
     },
@@ -474,8 +468,7 @@ Vue.createApp({
                     this.usuarioEmail = JSON.parse(JSON.stringify(this.usuario)).email;
                     (JSON.parse(JSON.stringify(this.usuario)).photoURL) ? (this.usuarioFoto = JSON.parse(JSON.stringify(this.usuario)).photoURL) : (this.usuarioFoto = "");
                     (JSON.parse(JSON.stringify(this.usuario)).displayName) ? (this.usuarioNombre = JSON.parse(JSON.stringify(this.usuario)).displayName) : (this.usuarioNombre = "");
-                }
-                else {
+                } else {
                     this.usuario = null;
                     this.usuarioEmail = "";
                     this.usuarioFoto = "";
@@ -494,13 +487,12 @@ Vue.createApp({
         autoSearch: function () {
             if (this.categorias.map(cat => cat.toUpperCase()).includes(this.busqueda.toUpperCase())) {
                 this.juegosFiltrados = this.juegos.filter(juego => juego[1].categorias.map(cat => cat.toUpperCase()).includes(this.busqueda.toUpperCase()));
-            }
-            else {
+            } else {
                 this.juegosFiltrados = this.juegos.filter(juego => juego[1].nombre.toUpperCase().includes(this.busqueda.toUpperCase()));
             };
         },
         checkFavs: function () {
-            if (this.usuario){
+            if (this.usuario) {
                 if (this.juegos.length > 0) {
                     this.juegos.forEach(juego => {
                         firebase.database().ref(`Juegos/${juego[0]}/favoritos`).on('child_added', (snapshot) => {
@@ -518,12 +510,12 @@ Vue.createApp({
                             }
                         })
                     })
-    
+
                 }
             }
         },
         checkDes: function () {
-            if (this.usuario){
+            if (this.usuario) {
                 if (this.juegos.length > 0) {
                     this.juegos.forEach(juego => {
                         firebase.database().ref(`Juegos/${juego[0]}/deseados`).on('child_added', (snapshot) => {
@@ -541,7 +533,7 @@ Vue.createApp({
                             }
                         })
                     })
-    
+
                 }
             }
         }
